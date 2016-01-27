@@ -5,10 +5,10 @@ from django.conf.urls import url
 from . import backgroundroute as route
 
 urlpatterns = [
-    url(r'^$', route.hello, name='login'),
+    url(r'^$', route.hello, name='hello'),
     url(r'^login/$', route.login, name='login'),
-#     url(r'^logout/$', route.logout, name='logout'),
-#     url(r'^mainpage/$', route.indexpage, name='index'),
+    url(r'^logout/$', route.logout, name='logout'),
+    url(r'^mainpage/$', route.indexpage, name='mainpage'),
 #     url(r'^taskdetail/$',route.taskdetail,name='taskdetail'),
 #     url(r'^taskdetail/eachtask/$',route.ipmain,name='ipmain'),
 #     url(r'^jobshow/$',route.jobshow,name='jobshow'),

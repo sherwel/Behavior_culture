@@ -11,21 +11,22 @@
 
 	
     <!-- bootstrap -->
-    <link href="/static/nmaptool/css/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="/static/nmaptool/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
-
+    <link href="/static/background/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="/static/background/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="/static/background/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/background/css/compiled/user-profile.css" type="text/css" media="screen" />
     <!-- libraries -->
-    <link href="/static/nmaptool/css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
-    <link href="/static/nmaptool/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+    <link href="/static/background/css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
+    <link href="/static/background/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
 
     <!-- global styles -->
-    <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/layout.css">
-    <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/elements.css">
-    <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/icons.css">
-      <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/skins/dark.css">
+    <link rel="stylesheet" type="text/css" href="/static/background/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="/static/background/css/elements.css">
+    <link rel="stylesheet" type="text/css" href="/static/background/css/icons.css">
+      <link rel="stylesheet" type="text/css" href="/static/background/css/compiled/skins/dark.css">
 
     <!-- this page specific styles -->
-    <link rel="stylesheet" href="/static/nmaptool/css/compiled/index.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/static/background/css/compiled/index.css" type="text/css" media="screen" />
 
     <!-- open sans font -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -47,7 +48,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/nmaptool/mainpage"><img src="/static/nmaptool/img/logo.png"></a>
+            <a class="navbar-brand" href="/background/mainpage"><img src="/static/background/img/logo.png"></a>
         </div>
         <ul class="nav navbar-nav pull-right hidden-xs">
             <li class="hidden-xs hidden-sm">
@@ -115,7 +116,7 @@
                 </a>
             </li>
             <li class="settings hidden-xs hidden-sm">
-                <a href="/nmaptool/logout" role="button">
+                <a href="/background/logout" role="button">
                     <i class="icon-share-alt"></i>
                 </a>
             </li>
@@ -131,12 +132,33 @@
                     <div class="arrow"></div>
                     <div class="arrow_border"></div>
                 </div>
-                <a href="/nmaptool/mainpage">
+                <a href="/background/mainpage">
                     <i class="icon-home"></i>
                     <span>首页</span>
                 </a>
             </li>            
-
+          <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-sitemap"></i>
+                    <span>学校</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#">学校列表</a></li>
+            
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="tables.html">
+                    <i class="icon-th-large"></i>
+                    <span>班级</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#">班级列表</a></li>
+                    <li><a href="#">表格</a></li>
+                </ul>
+            </li>
             <li>
                 <a class="dropdown-toggle" href="#">
                     <i class="icon-group"></i>
@@ -144,23 +166,24 @@
                     <i class="icon-chevron-down"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="user-list.html">用户列表</a></li>
-                    <li><a href="new-user.html">新用户</a></li>
-                    <li><a href="user-profile.html">用户资料</a></li>
+                    <li><a href="#">学生列表</a></li>
+                    <li><a href="#">教师列表</a></li>
+                    <li><a href="#">家长列表</a></li>
                 </ul>
             </li>
-
-            <li>
-                <a class="dropdown-toggle" href="tables.html">
-                    <i class="icon-th-large"></i>
-                    <span>表格</span>
+  　　 <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-comment"></i>
+                    <span>评价</span>
                     <i class="icon-chevron-down"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="/nmaptool/chartshow">网络状况</a></li>
-                    <li><a href="datatables.html">数据表格</a></li>
+                    <li><a href="#">学生评价</a></li>
+                    <li><a href="#">教师评价</a></li>
+                    <li><a href="#">家长评价</a></li>
                 </ul>
             </li>
+   
          
             <li>
                 <a href="#">
@@ -175,10 +198,7 @@
                     <i class="icon-chevron-down"></i>
                 </a>
                 <ul class="submenu">
-                    <li><a href="code-editor.html">代码编辑器</a></li>
-                    <li><a href="grids.html">网格</a></li>
-                    <li><a href="signin.html">登录</a></li>
-                    <li><a href="signup.html">注册</a></li>
+                    <li><a href="/background/logout">注销</a></li>
                 </ul>
             </li>
         </ul>
@@ -189,122 +209,92 @@
     <div class="content">
 
 
+ <div class="container-fluid">
+     <div id="pad-wrapper">
 
-    
-
-        <div id="pad-wrapper">
-
-         
-            <!-- end UI elements section -->
-
-            <!-- table sample -->
-            <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
             <div class="table-products section">
                 <div class="row head">
                     <div class="col-md-12">
-                        <h4>任务信息 <small>概要</small></h4>
+                        <h4>截止目前 <small>共有</small></h4>
                     </div>
                 </div>
+            </div>
+     <div id="main-stats">
+            
+                <div class="row-fluid stats-row">
 
-                <div class="row filter-block">
-                    <div class="col-md-8 col-md-offset-5">
-                        <div class="ui-select">
-                            <select>
-                                 <option>未启动</option>
-                              <option>进行中</option>
-                              <option>已完成</option>
-                              <option>暂停</option>
-                            </select>
+                    <div class="span3 stat">
+                        <div class="data">
+                            <span class="number">200</span>
+                            所
                         </div>
-                        <input type="text" class="search">
-                        <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-19990" role="button">+ 新增任务</a>
-
-                        <div id="modal-container-19990" class="modal  fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                     <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h5 class="modal-title">新增任务</h5>
+                        <span class="date">学校使用数</span>
+                    </div>
+                    <div class="span3 stat">
+                        <div class="data">
+                            <span class="number">3000</span>
+                            个
                         </div>
-                        <div class="modal-body">
+                        <span class="date">班级数量</span>
+                    </div>
+                    <div class="span3 stat">
+                        <div class="data">
+                            <span class="number">16543</span>
+                            个
+                        </div>
+                        <span class="date">学生数量</span>
+                    </div>
+                     <div class="span3 stat">
+                        <div class="data">
+                            <span class="number">54322</span>
+                            个
+                        </div>
+                        <span class="date">评价数量</span>
+                    </div>
+                </div>
+            </div>
+</div>
+ <div id="pad-wrapper">
+            <div class="table-products section">
+                <div class="row head">
+                    <div class="col-md-12">
+                        <h4>使用说明 <small>：</small></h4>
+                    </div>
+                </div>
+            </div>
 
-                            <div class="form-group">
-                      
-
-                                <input type="label" style="border:0px;" class="form-control" value="任务名" />
-                                <input type="text" class="form-control"   id="jobname" />
-                                <input type="label" style="border:0px;" class="form-control" value="扫描地址" />
-                                <input type="text" class="form-control"   id="jobaddress" />
-                                <input type="label" style="border:0px;" class="form-control" value="扫描端口" />
-                                <input type="text" class="form-control"   id="jobport" />
-                                <input type="label" style="border:0px;" class="form-control" value="优先级" />
-                                <input type="text" class="form-control"   id="priority" value="1"/>
-                                <input type="label" style="border:0px;" class="form-control" value="扫描概要" />
-                                <input type="text" class="form-control"   id="abstract" value="无"/>
-
-
+                    <!-- bio, new note & orders column -->
+                    <div class="span9 bio">
+                        <div class="profile-box">
+                            <!-- biography -->
+                            <div class="span12 section">
+                                <h6>参考</h6>
+                                <p>在侧边栏点击对应的链接进行相关操作. </p>
                             </div>
-
-
-
-
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary" onclick="createdata()">创建</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div>
+                           </div>
+                            
+</div>
+
+
+
+
+
                     </div>
                 </div>
-
-                <div class="row">
-                    <table class="table table-hover" id="tableId">
-                        <thead>
-                            <tr>
-                                <th class="col-md-3">
-                                    <input type="checkbox">
-                                    任务名
-                                </th>
-                                    <th class="col-md-3">
-                                     <span class="line"></span>
-                                    目标地址
-                                </th>
-                                <th class="col-md-3">
-                                    <span class="line"></span>信息概要
-                                </th>
-                                <th class="col-md-3">
-                                    <span class="line"></span>状态
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody id="head">
-                   
-                       
-                        </tbody>
-                    </table>
-                </div>
-                <ul class="pagination" id="page">
-                 
-                </ul>
-            </div>
-            <!-- end table sample -->
-        </div>
-    </div>
 
 
 	<!-- scripts -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="/static/nmaptool/js/bootstrap.min.js"></script>
-    <script src="/static/nmaptool/js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="/static/background/js/bootstrap.min.js"></script>
+    <script src="/static/background/js/jquery-ui-1.10.2.custom.min.js"></script>
     <!-- knob -->
-    <script src="/static/nmaptool/js/jquery.knob.js"></script>
+    <script src="/static/background/js/jquery.knob.js"></script>
     <!-- flot charts -->
-    <script src="/static/nmaptool/js/jquery.flot.js"></script>
-    <script src="/static/nmaptool/js/jquery.flot.stack.js"></script>
-    <script src="/static/nmaptool/js/jquery.flot.resize.js"></script>
-    <script src="/static/nmaptool/js/theme.js"></script>
+    <script src="/static/background/js/jquery.flot.js"></script>
+    <script src="/static/background/js/jquery.flot.stack.js"></script>
+    <script src="/static/background/js/jquery.flot.resize.js"></script>
+    <script src="/static/background/js/theme.js"></script>
   <script  language="javascript">
         var xmlhttp;
         var message=''
@@ -342,7 +332,7 @@
             var str='';
             str='page='+number+'&username='+message;
             nowpage=currpage;
-            xmlhttp.open("POST","/nmaptool/jobshow/",false);
+            xmlhttp.open("POST","/background/jobshow/",false);
             xmlhttp.onreadystatechange = callback;
             xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             xmlhttp.send(str);   
@@ -367,7 +357,7 @@ function startjob(taskid){
             xmlhttp= GetXmlHttp(xmlhttp);
             var str='';
             str='taskid='+localjobid;
-            xmlhttp.open("POST","/nmaptool/jobstart/",false);
+            xmlhttp.open("POST","/background/jobstart/",false);
             xmlhttp.onreadystatechange = jobcallback;
             xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             xmlhttp.send(str);   
@@ -377,7 +367,7 @@ function pausejob(taskid){
             xmlhttp= GetXmlHttp(xmlhttp);
             var str='';
             str='taskid='+localjobid;
-            xmlhttp.open("POST","/nmaptool/jobpause/",false);
+            xmlhttp.open("POST","/background/jobpause/",false);
             xmlhttp.onreadystatechange = jobcallback;
             xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             xmlhttp.send(str);   
@@ -388,7 +378,7 @@ function destroyjob(taskid){
             xmlhttp= GetXmlHttp(xmlhttp);
             var str='';
             str='taskid='+localjobid;
-            xmlhttp.open("POST","/nmaptool/jobdestroy/",false);
+            xmlhttp.open("POST","/background/jobdestroy/",false);
             xmlhttp.onreadystatechange = jobcallback;
             xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             xmlhttp.send(str);   
@@ -463,8 +453,8 @@ function destroyjob(taskid){
                         temport=jobs[i].jobport;
                      bodyhtml+="<tr>"+
                                         "<td><input type=\"checkbox\">"+
-                                            "<div class=\"img\"><img src=\"/static/nmaptool/img/owl.png\"></div>"+
-                                            "<a href=\"/nmaptool/taskdetail?jobid="+jobs[i].jobid+"\">"+jobs[i].jobname +"</a></td>"+
+                                            "<div class=\"img\"><img src=\"/static/background/img/owl.png\"></div>"+
+                                            "<a href=\"/background/taskdetail?jobid="+jobs[i].jobid+"\">"+jobs[i].jobname +"</a></td>"+
                                         "<td class=\"description\">"+jobs[i].jobaddress+"</td>"+
                                         "<td class=\"description\">"+temport+"</td>"+
                                         "<td><span class=\"label label-"+labelstatus+"\">"+Active+"</span><ul class=\"actions\">"+
@@ -530,7 +520,7 @@ function destroyjob(taskid){
 
             xmlhttp= GetXmlHttp(xmlhttp);
 
-            xmlhttp.open("POST","/nmaptool/jobadd/",true);
+            xmlhttp.open("POST","/background/jobadd/",true);
             xmlhttp.onreadystatechange = createcallback;
             var str='jobname='+jobname+'&jobaddress='+jobaddress+'&jobport='+jobport+'&priority='+priority+'&abstract='+abstract;
             xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -565,119 +555,7 @@ function destroyjob(taskid){
 
 
 </script>
-    <script type="text/javascript">
-        $(function () {
-
-            // jQuery Knobs
-            $(".knob").knob();
-
-
-
-            // jQuery UI Sliders
-            $(".slider-sample1").slider({
-                value: 100,
-                min: 1,
-                max: 500
-            });
-            $(".slider-sample2").slider({
-                range: "min",
-                value: 130,
-                min: 1,
-                max: 500
-            });
-            $(".slider-sample3").slider({
-                range: true,
-                min: 0,
-                max: 500,
-                values: [ 40, 170 ],
-            });
-
-            
-
-            // jQuery Flot Chart
-            var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 57],[12, 59]];
-            var visitors = [[1, 25], [2, 50], [3, 23], [4, 48],[5, 38],[6, 40],[7, 47],[8, 55],[9, 43],[10,50],[11,47],[12, 39]];
-
-            var plot = $.plot($("#statsChart"),
-                [ { data: visits, label: "Signups"},
-                 { data: visitors, label: "Visits" }], {
-                    series: {
-                        lines: { show: true,
-                                lineWidth: 1,
-                                fill: true, 
-                                fillColor: { colors: [ { opacity: 0.1 }, { opacity: 0.13 } ] }
-                             },
-                        points: { show: true, 
-                                 lineWidth: 2,
-                                 radius: 3
-                             },
-                        shadowSize: 0,
-                        stack: true
-                    },
-                    grid: { hoverable: true, 
-                           clickable: true, 
-                           tickColor: "#f9f9f9",
-                           borderWidth: 0
-                        },
-                    legend: {
-                            // show: false
-                            labelBoxBorderColor: "#fff"
-                        },  
-                    colors: ["#a7b5c5", "#30a0eb"],
-                    xaxis: {
-                        ticks: [[1, "JAN"], [2, "FEB"], [3, "MAR"], [4,"APR"], [5,"MAY"], [6,"JUN"], 
-                               [7,"JUL"], [8,"AUG"], [9,"SEP"], [10,"OCT"], [11,"NOV"], [12,"DEC"]],
-                        font: {
-                            size: 12,
-                            family: "Open Sans, Arial",
-                            variant: "small-caps",
-                            color: "#697695"
-                        }
-                    },
-                    yaxis: {
-                        ticks:3, 
-                        tickDecimals: 0,
-                        font: {size:12, color: "#9da3a9"}
-                    }
-                 });
-
-            function showTooltip(x, y, contents) {
-                $('<div id="tooltip">' + contents + '</div>').css( {
-                    position: 'absolute',
-                    display: 'none',
-                    top: y - 30,
-                    left: x - 50,
-                    color: "#fff",
-                    padding: '2px 5px',
-                    'border-radius': '6px',
-                    'background-color': '#000',
-                    opacity: 0.80
-                }).appendTo("body").fadeIn(200);
-            }
-
-            var previousPoint = null;
-            $("#statsChart").bind("plothover", function (event, pos, item) {
-                if (item) {
-                    if (previousPoint != item.dataIndex) {
-                        previousPoint = item.dataIndex;
-
-                        $("#tooltip").remove();
-                        var x = item.datapoint[0].toFixed(0),
-                            y = item.datapoint[1].toFixed(0);
-
-                        var month = item.series.xaxis.ticks[item.dataIndex].label;
-
-                        showTooltip(item.pageX, item.pageY,
-                                    item.series.label + " of " + month + ": " + y);
-                    }
-                }
-                else {
-                    $("#tooltip").remove();
-                    previousPoint = null;
-                }
-            });
-        });
-    </script>
+    
   
 
 </body>

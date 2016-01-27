@@ -43,3 +43,9 @@ def login(request):
             return response
         else:
             return render_to_response('backgroundview/login.html', {'data':'用户名或密码错误'})  
+def indexpage(request):
+    islogin = request.COOKIES.get('islogin',False)
+    username = request.COOKIES.get('username','')
+    if islogin:
+        return render_to_response('backgroundview/mainpage.html',{'username':username})
+    return render_to_response('backgroundview/login.html', {'data':''})
