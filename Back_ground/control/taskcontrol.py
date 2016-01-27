@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #coding:utf-8
-from spidertool import sniffertask
+from tool import sniffertask
 import schedule
 from datetime import datetime
 import time
@@ -45,7 +45,7 @@ def addschedule(event, day_of_week='0-7', hour='11',minute='57' ,second='0',id='
     mainschedule.addschedule(tick,day_of_week,hour,minute,second,id=id)
 #定时任务初始化函数
 def scheduleinit():
-    from spidertool import scapytool 
+    from tool import scapytool 
     import taskitem
 #    scapytool.initsniffer()＃被动嗅探功能
     global mainschedule

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #coding:utf-8
-from spidertool import webtool
+from tool import webtool
 class Ip(object):
     def __init__(self,ip='',vendor='',osfamily='',osgen='',accurate='',state='',hostname='unknow',updatetime='',city=''):
         '''

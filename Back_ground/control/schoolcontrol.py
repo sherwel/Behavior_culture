@@ -1,14 +1,14 @@
 #!/usr/bin/python
 #coding:utf-8
-from spidertool import SQLTool ,config
-from ..model import job
+from tool import SQLTool ,config
+from Back_ground.model import school
 
 
 limitpage=15
 
 
 localconfig=config.Config()
-def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',page='0'):
+def schoolshow(schoolname='',jobstatus='',username='',taskid='',jobport='',result='',page='0'):
     validresult=False
     request_params=[]
     values_params=[]
@@ -56,14 +56,14 @@ def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',p
         if count>0:
             validresult=True
             for temp in result :
-                ajob=job.Job(username=temp['username'],jobid=temp['taskid'],jobname=temp['taskname'],priority=temp['taskprior'],jobstatus=temp['taskstatus'],starttime=temp['starttime'],jobaddress=temp['taskaddress'],jobport=temp['taskport'],result=temp['result'],endtime=temp['endtime'],createtime=temp['createtime'],forcesearch=temp['forcesearch'])
+                ajob=school.Job(username=temp['username'],jobid=temp['taskid'],jobname=temp['taskname'],priority=temp['taskprior'],jobstatus=temp['taskstatus'],starttime=temp['starttime'],jobaddress=temp['taskaddress'],jobport=temp['taskport'],result=temp['result'],endtime=temp['endtime'],createtime=temp['createtime'],forcesearch=temp['forcesearch'])
 
-#                 ajob=job.Job(username=temp[0],jobid=temp[1],jobname=temp[2],priority=temp[3],jobstatus=temp[4],starttime=temp[5],jobaddress=temp[6],jobport=temp[7],result=temp[8],endtime=temp[9],createtime=temp[10],forcesearch=temp[11])
+#                 ajob=school.Job(username=temp[0],jobid=temp[1],jobname=temp[2],priority=temp[3],jobstatus=temp[4],starttime=temp[5],jobaddress=temp[6],jobport=temp[7],result=temp[8],endtime=temp[9],createtime=temp[10],forcesearch=temp[11])
                 jobs.append(ajob)
         return jobs,count,pagecount
     return [],0,pagecount
 ##count为返回结果行数，col为返回结果列数,count,pagecount都为int型
-def loadjob(request,username=''):
+def loadschool(request,username=''):
     jobname=request.POST.get('jobname','')
     jobaddress=request.POST.get('jobaddress','')
     jobport=request.POST.get('jobport','')
@@ -73,21 +73,21 @@ def loadjob(request,username=''):
     tempjob=None
     if jobaddress=='' or jobname=='':
         return tempjob,False
-    tempjob=job.Job(jobname=jobname,jobaddress=jobaddress,priority=priority,username=username,jobport=jobport,forcesearch=forcesearch)
+    tempjob=school.Job(jobname=jobname,jobaddress=jobaddress,priority=priority,username=username,jobport=jobport,forcesearch=forcesearch)
     
     return tempjob,True
-def jobadd(job):
-    jobname=job.getJobname()
-    jobaddress=job.getJobaddress()
-    jobport=job.getPort()
-    priority=job.getPriority()
-    jobstatus=job.getStatus()
-    username=job.getUsername()
-    starttime=job.getStarttime()
-    createtime=job.getCreatetime()
-    taskid=job.getJobid()
-    result=job.getResult()
-    forcesearch=job.getForcesearch()
+def schooladd(school):
+    jobname=school.getJobname()
+    jobaddress=school.getJobaddress()
+    jobport=school.getPort()
+    priority=school.getPriority()
+    jobstatus=school.getStatus()
+    username=school.getUsername()
+    starttime=school.getStarttime()
+    createtime=school.getCreatetime()
+    taskid=school.getJobid()
+    result=school.getResult()
+    forcesearch=school.getForcesearch()
     print 'forcesearch is' +forcesearch
     request_params=[]
     values_params=[]
@@ -133,10 +133,8 @@ def jobadd(job):
     DBhelp.closedb()
 
     return tempresult
-def jobgetwork():
-    
-    pass
-def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatus='',starttime='',result='',username='',finishtime=''):
+
+def schoolupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatus='',starttime='',result='',username='',finishtime=''):
 
 
     request_params=[]

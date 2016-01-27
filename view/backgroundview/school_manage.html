@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,8 +38,7 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
-<!-- <body onload="loadtask(0);"> -->
-<body onload="">
+<body onload="loadtask(0);">
     <!-- navbar -->
     <header class="navbar navbar-inverse" role="banner">
         <div class="navbar-header">
@@ -128,24 +127,25 @@
     <!-- sidebar -->
     <div id="sidebar-nav">
         <ul id="dashboard-menu">
-            <li class="active">
-                <div class="pointer">
-                    <div class="arrow"></div>
-                    <div class="arrow_border"></div>
-                </div>
+            <li >
+    
                 <a href="/background/mainpage">
                     <i class="icon-home"></i>
                     <span>首页</span>
                 </a>
             </li>            
-          <li>
+          <li class="active">
                 <a class="dropdown-toggle" href="#">
+                    <div class="pointer">
+                        <div class="arrow"></div>
+                        <div class="arrow_border"></div>
+                    </div>
                     <i class="icon-sitemap"></i>
                     <span>学校</span>
                     <i class="icon-chevron-down"></i>
                 </a>
-                <ul class="submenu">
-                    <li><a href="/background/schoolmanage/">学校列表</a></li>
+                <ul class="active submenu">
+                    <li><a href="/background/schoolmanage/" class="active">学校列表</a></li>
             
                 </ul>
             </li>
@@ -207,83 +207,111 @@
     <!-- end sidebar -->
 
 	<!-- main container -->
-    <div class="content">
+   <div class="content">
 
 
- <div class="container-fluid">
-     <div id="pad-wrapper">
 
+    
+
+        <div id="pad-wrapper">
+
+         
+            <!-- end UI elements section -->
+
+            <!-- table sample -->
+            <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
             <div class="table-products section">
                 <div class="row head">
                     <div class="col-md-12">
-                        <h4>截止目前 <small>共有</small></h4>
+                        <h4>学校列表 <small>概要</small></h4>
                     </div>
                 </div>
-            </div>
-     <div id="main-stats">
-            
-                <div class="row-fluid stats-row">
 
-                    <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">200</span>
-                            所
+                <div class="row filter-block">
+                    <div class="col-md-8 col-md-offset-5">
+                        <div class="ui-select">
+                            <select>
+                                 <option>按校名</option>
+                              <option>按校ID</option>
+                              <option>按省份</option>
+                              <option>按城市</option>
+                            </select>
                         </div>
-                        <span class="date">学校使用数</span>
-                    </div>
-                    <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">3000</span>
-                            个
-                        </div>
-                        <span class="date">班级数量</span>
-                    </div>
-                    <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">16543</span>
-                            个
-                        </div>
-                        <span class="date">学生数量</span>
-                    </div>
-                     <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">54322</span>
-                            个
-                        </div>
-                        <span class="date">评价数量</span>
-                    </div>
-                </div>
-            </div>
-</div>
- <div id="pad-wrapper">
-            <div class="table-products section">
-                <div class="row head">
-                    <div class="col-md-12">
-                        <h4>使用说明 <small>：</small></h4>
-                    </div>
-                </div>
-            </div>
+                        <input type="text" class="search">
+                        <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-19990" role="button">+ 新增学校</a>
 
-                    <!-- bio, new note & orders column -->
-                    <div class="span9 bio">
-                        <div class="profile-box">
-                            <!-- biography -->
-                            <div class="span12 section">
-                                <h6>参考</h6>
-                                <p>在侧边栏点击对应的链接进行相关操作. </p>
+                        <div id="modal-container-19990" class="modal  fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h5 class="modal-title">新增学校</h5>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                      
+
+                                <input type="label" style="border:0px;" class="form-control" value="学校名" />
+                                <input type="text" class="form-control"   id="jobname" />
+                                <input type="label" style="border:0px;" class="form-control" value="省份" />
+                                <input type="text" class="form-control"   id="jobaddress" />
+                                <input type="label" style="border:0px;" class="form-control" value="城市" />
+                                <input type="text" class="form-control"   id="jobport" />
+                                <input type="label" style="border:0px;" class="form-control" value="校ID" />
+                                <input type="text" class="form-control"   id="priority" value="1"/>
+ 
+
+
                             </div>
+
+
+
+
                         </div>
-                           </div>
-                            
-</div>
-
-
-
-
-
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" onclick="createdata()">创建</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
                     </div>
                 </div>
 
+                <div class="row">
+                    <table class="table table-hover" id="tableId">
+                        <thead>
+                            <tr>
+                                <th class="col-md-3">
+                                    <input type="checkbox">
+                                    校名
+                                </th>
+                                    <th class="col-md-3">
+                                     <span class="line"></span>
+                                    校ID
+                                </th>
+                                <th class="col-md-3">
+                                    <span class="line"></span>省份
+                                </th>
+                                <th class="col-md-3">
+                                    <span class="line"></span>城市
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="head">
+                   
+                       
+                        </tbody>
+                    </table>
+                </div>
+                <ul class="pagination" id="page">
+                 
+                </ul>
+            </div>
+            <!-- end table sample -->
+        </div>
+    </div>
 
 	<!-- scripts -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>

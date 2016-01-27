@@ -30,33 +30,33 @@ def object2dict(obj):
 	return d
  
 def dict2object(d):
-    #convert dict to object
-    if'__class__' in d:
-        class_name = d.pop('__class__')
-        module_name = d.pop('__module__')
-        module = __import__(module_name)
-        class_ = getattr(module,class_name)
-        args = dict((key.encode('ascii'), value) for key, value in d.items()) #get args
-        inst = class_(**args) #create new instance
-    else:
-        inst = d
-    return inst
+#convert dict to object
+	if'__class__' in d:
+		class_name = d.pop('__class__')
+		module_name = d.pop('__module__')
+		module = __import__(module_name)
+		class_ = getattr(module,class_name)
+		args = dict((key.encode('ascii'), value) for key, value in d.items()) #get args
+		inst = class_(**args) #create new instance
+	else:
+		inst = d
+	return inst
 def getlocaltime():
 	return str(time.strftime("%Y-%m-%d %X", time.localtime()))
 def isip(ip):
- 	if re.match('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', ip) != None:
+	if re.match('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', ip) != None:
 #   		print 'IP!'
-  		return True
-  	else:
+		return True
+	else:
 #   		print 'web'
-  		return False
+		return False
 def getLocationinfo(ip):
 	httpClient=None
 	response_data={}
 	try:
 		httpClient = httplib.HTTPConnection('ip.taobao.com', 80, timeout=30)
 		httpClient.request('GET', '/service/getIpInfo.php?ip='+ip)
- 
+
 #response是HTTPResponse对象
 		response = httpClient.getresponse()
 #		 print response.status
@@ -69,4 +69,8 @@ def getLocationinfo(ip):
 		if httpClient:
 			httpClient.close()
 		return json.loads(response_data)
-	
+def md5(str):
+	import hashlib
+	m = hashlib.md5()   
+	m.update(str)
+	return m.hexdigest()

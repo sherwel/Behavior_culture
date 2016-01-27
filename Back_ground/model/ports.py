@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
 
-from spidertool import webtool
+from tool import webtool
 class Port(object):
     def __init__(self,ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',head='',city=''):
         '''

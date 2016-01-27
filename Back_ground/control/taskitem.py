@@ -1,4 +1,4 @@
-from spidertool import zmaptool
+from tool import zmaptool
 import random
 from datetime import datetime
 operator = {'1':'80','2':'8080','3':'443','4':'22','5':'23'}  

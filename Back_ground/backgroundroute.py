@@ -12,11 +12,11 @@ from django.http import HttpResponse,HttpResponseRedirect,HttpResponseNotFound
 import datetime
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from control import usercontrol
+from control import usercontrol,schoolcontrol
 from django.views import generic
-from spidertool import webtool
+from tool import webtool
 from model.user import User
-from spidertool import  connectpool
+from tool import  connectpool
 import httplib
 import json
 def hello(request):
@@ -49,3 +49,67 @@ def indexpage(request):
     if islogin:
         return render_to_response('backgroundview/mainpage.html',{'username':username})
     return render_to_response('backgroundview/login.html', {'data':''})
+def schoolmanage(request):
+    islogin = request.COOKIES.get('islogin',False)
+    username = request.COOKIES.get('username','')
+    if islogin:
+        return render_to_response('backgroundview/school_manage.html',{'username':username})
+    return render_to_response('backgroundview/login.html', {'data':''})
+def getschool(request):   
+    if request.method=='POST':
+        islogin = request.COOKIES.get('islogin',False)
+        schoolid= request.POST.get('schoolid','')
+        page= request.POST.get('page','0')
+        schoolname= request.POST.get('schoolname','')
+        province= request.POST.get('province','')
+        city= request.POST.get('city','')
+        username = request.COOKIES.get('username','') 
+        role = request.COOKIES.get('role','1')
+        response_data = {}  
+        response_data['result'] = '0' 
+        if role=='admin':
+            jobs,count,pagecount=schoolcontrol.jobshow(username=username,taskid=jobid)
+#             print 'this is user'
+        else:
+            jobs,count,pagecount=schoolcontrol.jobshow(taskid=jobid)
+#             print 'this is administor'
+        if count>0 and jobid!='':
+            ip=jobs[0].getJobaddress()   
+            port=jobs[0].getPort()
+            statuss=jobs[0].getStatus()
+            isip=webtool.isip(ip)
+            if isip:
+                
+                ips,counts,pagecounts=ipcontrol.ipshow(ip=ip)
+            else:
+                ips,counts,pagecounts=ipcontrol.ipshow(hostname=ip)
+                if counts>0:
+                    ip=ips[0].getIP()
+                else:
+                    ip='未知'
+            response_data['result'] = '1' 
+            response_data['ipstate'] = '0' 
+            response_data['ip']=ip
+            response_data['jobstate']=statuss
+#             print 'it has this task'
+            if counts>0:
+#                 print 'it has this ip'
+                response_data['ipstate'] = '1' 
+                response_data['length']=counts
+                response_data['ips']=ips[0]
+                response_data['pagecount']=pagecounts
+                portinfo=portcontrol.divided(port,'port')
+                ports,portcount,portpagecount=portcontrol.portshow(ip=ip,page=page,extra=portinfo)
+                response_data['ports']=ports
+                response_data['portslength']=portcount
+                response_data['portspagecount']=portpagecount
+                response_data['portspage']=page
+                return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+            else:
+                return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+
+        else:
+            return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+
+  
+    

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #coding:utf-8
-from spidertool import SQLTool ,config
+from tool import SQLTool ,config
 from ..model import ports
 import re
 

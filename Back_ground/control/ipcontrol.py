@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #coding:utf-8
-from spidertool import SQLTool ,config,Sqldatatask
+from tool import SQLTool ,config,Sqldatatask
 from ..model import ipmain
 import time 
 limitpage=15

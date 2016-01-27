@@ -5,14 +5,14 @@ class Config(object):
 	host='localhost'
 	username='root'
 	passwd=''
-	database='datap'
+	database='t_qcpj'
 	port=3306
 	charset='utf8'
 	cachemax=30
 	cachemin=1
 	iptable='ip_maindata'
 	porttable='snifferdata'
-	usertable='user_table'
+	usertable='t_login'
 	tasktable='taskdata'
 	iptable='ip_maindata'
 	
