@@ -55,61 +55,80 @@ def schoolmanage(request):
     if islogin:
         return render_to_response('backgroundview/school_manage.html',{'username':username})
     return render_to_response('backgroundview/login.html', {'data':''})
-def getschool(request):   
-    if request.method=='POST':
-        islogin = request.COOKIES.get('islogin',False)
-        schoolid= request.POST.get('schoolid','')
-        page= request.POST.get('page','0')
-        schoolname= request.POST.get('schoolname','')
-        province= request.POST.get('province','')
-        city= request.POST.get('city','')
-        username = request.COOKIES.get('username','') 
-        role = request.COOKIES.get('role','1')
-        response_data = {}  
-        response_data['result'] = '0' 
-        if role=='admin':
-            jobs,count,pagecount=schoolcontrol.jobshow(username=username,taskid=jobid)
-#             print 'this is user'
-        else:
-            jobs,count,pagecount=schoolcontrol.jobshow(taskid=jobid)
-#             print 'this is administor'
-        if count>0 and jobid!='':
-            ip=jobs[0].getJobaddress()   
-            port=jobs[0].getPort()
-            statuss=jobs[0].getStatus()
-            isip=webtool.isip(ip)
-            if isip:
-                
-                ips,counts,pagecounts=ipcontrol.ipshow(ip=ip)
-            else:
-                ips,counts,pagecounts=ipcontrol.ipshow(hostname=ip)
-                if counts>0:
-                    ip=ips[0].getIP()
-                else:
-                    ip='未知'
-            response_data['result'] = '1' 
-            response_data['ipstate'] = '0' 
-            response_data['ip']=ip
-            response_data['jobstate']=statuss
-#             print 'it has this task'
-            if counts>0:
-#                 print 'it has this ip'
-                response_data['ipstate'] = '1' 
-                response_data['length']=counts
-                response_data['ips']=ips[0]
-                response_data['pagecount']=pagecounts
-                portinfo=portcontrol.divided(port,'port')
-                ports,portcount,portpagecount=portcontrol.portshow(ip=ip,page=page,extra=portinfo)
-                response_data['ports']=ports
-                response_data['portslength']=portcount
-                response_data['portspagecount']=portpagecount
-                response_data['portspage']=page
-                return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
-            else:
-                return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+def schoolshow(request):
 
-        else:
-            return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+    islogin = request.COOKIES.get('islogin',False)
+    schoolname=request.POST.get('schoolname','')
+    schoolid=request.POST.get('schoolid','')
+    province=request.POST.get('province','')
+    city=request.POST.get('city','')
+    starttime=request.POST.get('starttime','')
+    page=request.POST.get('page','0')
+    response_data = {}  
+    response_data['result'] = '0' 
+    response_data['page']=page
+    if islogin:
+        response_data['result'] = '1' 
+        schools,count,pagecount=schoolcontrol.schoolshow(schoolname=schoolname,page=page,schoolid=schoolid,province=province,city=city)
+        response_data['length']=count
+        response_data['school']=schools
+        response_data['pagecount']=pagecount
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+    else:
+        
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+
+# def getschool(request):   
+#     if request.method=='POST':
+#         islogin = request.COOKIES.get('islogin',False)
+#         schoolid= request.POST.get('schoolid','')
+#         page= request.POST.get('page','0')
+#         schoolname= request.POST.get('schoolname','')
+#         province= request.POST.get('province','')
+#         city= request.POST.get('city','')
+# 
+#         response_data = {}  
+#         response_data['result'] = '0' 
+# 
+#         schools,count,pagecount=schoolcontrol.schoolshow(schoolid=schoolid)
+# #             print 'this is administor'
+#         if count>0 and schoolid!='':
+#             ip=schools[0].getJobaddress()   
+#             port=schools[0].getPort()
+#             statuss=schools[0].getStatus()
+#             isip=webtool.isip(ip)
+#             if isip:
+#                 
+#                 ips,counts,pagecounts=schoolcontrol.schoolshow(ip=ip)
+#             else:
+#                 ips,counts,pagecounts=schoolcontrol.schoolshow(hostname=ip)
+#                 if counts>0:
+#                     ip=ips[0].getIP()
+#                 else:
+#                     ip='未知'
+#             response_data['result'] = '1' 
+#             response_data['ipstate'] = '0' 
+#             response_data['ip']=ip
+#             response_data['jobstate']=statuss
+# #             print 'it has this task'
+#             if counts>0:
+# #                 print 'it has this ip'
+#                 response_data['ipstate'] = '1' 
+#                 response_data['length']=counts
+#                 response_data['ips']=ips[0]
+#                 response_data['pagecount']=pagecounts
+#                 portinfo=portcontrol.divided(port,'port')
+#                 ports,portcount,portpagecount=portcontrol.portshow(ip=ip,page=page,extra=portinfo)
+#                 response_data['ports']=ports
+#                 response_data['portslength']=portcount
+#                 response_data['portspagecount']=portpagecount
+#                 response_data['portspage']=page
+#                 return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+#             else:
+#                 return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+# 
+#         else:
+#             return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
 
   
     

@@ -276,6 +276,47 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div>
+
+  <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-123" role="button">批量导入学校</a>
+
+                        <div id="modal-container-123" class="modal  fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h5 class="modal-title">导入学校</h5>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                      
+  <form name="myform" action="fileupload" method="post"
+       enctype="multipart/form-data">
+       <br>
+     文件:  <input type="file" name="xlsfile"　><br>
+       <br>
+       <input type="submit" name="submit" class="btn btn-primary"　value="上传">
+    </form>
+
+ 
+
+
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" onclick="createdata()">确认导入</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+
+
+
                     </div>
                 </div>
 
@@ -291,11 +332,14 @@
                                      <span class="line"></span>
                                     校ID
                                 </th>
-                                <th class="col-md-3">
+                                <th class="col-md-2">
                                     <span class="line"></span>省份
                                 </th>
-                                <th class="col-md-3">
+                                <th class="col-md-2">
                                     <span class="line"></span>城市
+                                </th>
+                                      <th class="col-md-3">
+                                    <span class="line"></span>操作
                                 </th>
                             </tr>
                         </thead>
@@ -331,7 +375,7 @@
         var nextpagehtml;
         var pagesize=0;
         var nowpage=0;
-        var jobs=null;
+        var school=null;
         //创建XMLHttpRequest对象
         function GetXmlHttp(xmlhttp){
             if(window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
@@ -359,9 +403,9 @@
             xmlhttp= GetXmlHttp(xmlhttp);
             var number=currpage;
             var str='';
-            str='page='+number+'&username='+message;
+            str='page='+number;
             nowpage=currpage;
-            xmlhttp.open("POST","/background/jobshow/",false);
+            xmlhttp.open("POST","/background/schoolshow/",false);
             xmlhttp.onreadystatechange = callback;
             xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             xmlhttp.send(str);   
@@ -382,17 +426,17 @@
             }
         }
 function startjob(taskid){
-            localjobid=jobs[taskid].jobid;
+            localjobid=school[taskid].jobid;
             xmlhttp= GetXmlHttp(xmlhttp);
             var str='';
             str='taskid='+localjobid;
-            xmlhttp.open("POST","/background/jobstart/",false);
+            xmlhttp.open("POST","/background/schoolstart/",false);
             xmlhttp.onreadystatechange = jobcallback;
             xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             xmlhttp.send(str);   
 }
 function pausejob(taskid){
-            localjobid=jobs[taskid].jobid;
+            localjobid=school[taskid].jobid;
             xmlhttp= GetXmlHttp(xmlhttp);
             var str='';
             str='taskid='+localjobid;
@@ -403,7 +447,7 @@ function pausejob(taskid){
 }
 
 function destroyjob(taskid){
-            localjobid=jobs[taskid].jobid;
+            localjobid=school[taskid].jobid;
             xmlhttp= GetXmlHttp(xmlhttp);
             var str='';
             str='taskid='+localjobid;
@@ -446,7 +490,7 @@ function destroyjob(taskid){
             var datalength=data2.length;
             var pagesize=data2.pagecount;
             var nowpage=data2.page
-             jobs=data2.jobs;
+             school=data2.school;
             currpage=Number(nowpage)+1;
               var bodyhtml = "";
             
@@ -459,37 +503,15 @@ function destroyjob(taskid){
              
 
                 for (var i = 0; i < datalength; i++) {
-                     var labelstatus=''
-                     var Active='';
-                     statuss=jobs[i].jobstatus;
-
-                     switch(statuss){
-                        case '1':Active='未启动';labelstatus='default';break;
-                        case '2':Active='正在排队';labelstatus='info';break;
-                        case '3':Active='正在执行';labelstatus='primary';break;
-                        case '4':Active='挂起';labelstatus='warning';break;
-                        case '5':Active='已完成';labelstatus='success';break;
-                        case '6':Active='已终止';labelstatus='danger';break;
-                        default:Active='未知';labelstatus='danger';break;
-                     }
-
-             
-                     var temport=''
-                     if (jobs[i].jobport==''){
-                        temport='全部可用端口';
-                     }
-                     else
-                        temport=jobs[i].jobport;
+                   
                      bodyhtml+="<tr>"+
                                         "<td><input type=\"checkbox\">"+
                                             "<div class=\"img\"><img src=\"/static/background/img/owl.png\"></div>"+
-                                            "<a href=\"/background/taskdetail?jobid="+jobs[i].jobid+"\">"+jobs[i].jobname +"</a></td>"+
-                                        "<td class=\"description\">"+jobs[i].jobaddress+"</td>"+
-                                        "<td class=\"description\">"+temport+"</td>"+
-                                        "<td><span class=\"label label-"+labelstatus+"\">"+Active+"</span><ul class=\"actions\">"+
-                                     
-                                            "<li onclick='startjob("+i+");'><i class=\"table-start\" ></i></li>"+
-                                            "<li onclick='pausejob("+i+");'><i class=\"table-pause\"></i></li>"+
+                                            "<a href=\"/background/schooldetail?schoolid="+school[i].schoolid+"\">"+school[i].schoolname +"</a></td>"+
+                                        "<td class=\"description\">"+school[i].schoolid+"</td>"+
+                                        "<td class=\"description\">"+school[i].province+"</td>"+
+                                        "<td class=\"description\">"+school[i].city+"</td>"+
+                                        "<td><ul class=\"actions\">"+
                                             "<li><i class=\"table-edit\"></i></li>"+
                                             "<li><i class=\"table-settings\"></i></li>"+
                                             "<li class=\"last\" onclick='destroyjob("+i+");'><i class=\"table-delete\"></i></li>"+

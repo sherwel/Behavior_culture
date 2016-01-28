@@ -169,7 +169,7 @@
 .table-products .table ul.actions {
   margin: 5px 0 0 0;
   padding: 0;
-  float: right;
+  float: left;
 }
 .table-products .table ul.actions li {
   display: inline;
