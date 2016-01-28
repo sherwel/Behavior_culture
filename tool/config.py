@@ -10,7 +10,7 @@ class Config(object):
 	charset='utf8'
 	cachemax=30
 	cachemin=1
-	iptable='ip_maindata'
+	schooltable='t_school'
 	porttable='snifferdata'
 	usertable='t_login'
 	tasktable='taskdata'

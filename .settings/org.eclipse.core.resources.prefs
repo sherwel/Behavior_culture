@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//Back_ground/backgroundroute.py=utf-8
+encoding//Back_ground/control/schedule.py=utf-8
 encoding//Back_ground/control/schoolcontrol.py=utf-8
 encoding//Back_ground/control/usercontrol.py=utf-8
 encoding//Back_ground/model/school.py=utf-8
