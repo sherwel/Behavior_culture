@@ -7,6 +7,8 @@ Created on 2016年2月10日
 '''
 import os
 from tool import webtool
+import xlrd  
+ 
 def handle_uploaded_file(f):
 
     folderload= os.path.join(os.path.dirname(__file__), '../../upload/')
@@ -20,3 +22,5 @@ def handle_uploaded_file(f):
                 destination.write(chunk)
     except Exception,e:
         print str(e)+'   file error'
+def getxlsfile(path):
+    pass
