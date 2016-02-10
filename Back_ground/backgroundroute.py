@@ -12,7 +12,7 @@ from django.http import HttpResponse,HttpResponseRedirect,HttpResponseNotFound
 import datetime
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from control import usercontrol,schoolcontrol
+from control import usercontrol,schoolcontrol,filecontrol
 from django.views import generic
 from tool import webtool
 from model.user import User
@@ -22,26 +22,22 @@ import json
 from form import upload_file_form
 from django.core.cache import cache
 import os
-def handle_uploaded_file(f):
-    folderload= os.path.join(os.path.dirname(__file__), '../upload/')
-    filename='a.txt'
-    absolutepath=(folderload+filename).replace('\\','/')
-    with open(absolutepath, 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
-def upload(request):
 
+def upload(request):
+    response_data = {}  
+    response_data['result'] = '0' 
     if request.method == 'POST':
         form = upload_file_form.UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             islogin = request.COOKIES.get('islogin',False)
 
             if islogin:
-                handle_uploaded_file(request.FILES['file'])
-                return HttpResponse("上传成功")
+                filecontrol.handle_uploaded_file(request.FILES['file'])
+                response_data['result'] = '1' 
+                return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
     else:
         form = upload_file_form.UploadFileForm()
-    return HttpResponse("上传失败")
+    return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
 def hello(request):
     return HttpResponse("Hello world")
 def logout(request):

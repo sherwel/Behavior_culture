@@ -628,7 +628,13 @@ $.ajax({
     processData: false,
     contentType: false,
     success: function(data) {
-        alert(data);
+        alert(data.result);
+
+
+            window.location.reload();
+
+
+
     }
 });
 return false;
