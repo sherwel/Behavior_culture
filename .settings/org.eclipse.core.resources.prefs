@@ -3,6 +3,7 @@ encoding//Back_ground/backgroundroute.py=utf-8
 encoding//Back_ground/control/schedule.py=utf-8
 encoding//Back_ground/control/schoolcontrol.py=utf-8
 encoding//Back_ground/control/usercontrol.py=utf-8
+encoding//Back_ground/form/upload_file_form.py=utf-8
 encoding//Back_ground/model/school.py=utf-8
 encoding//Back_ground/urls.py=utf-8
 encoding//Behavior_culture/settings.py=utf-8

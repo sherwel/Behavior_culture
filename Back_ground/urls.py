@@ -10,6 +10,8 @@ urlpatterns = [
     url(r'^logout/$', route.logout, name='logout'),
     url(r'^mainpage/$', route.indexpage, name='mainpage'),
     url(r'^schoolmanage/$', route.schoolmanage, name='schoolmanage'),
+    url(r'^fileupload/$',route.upload,name='upload'),
+#     url(r'^get_upload_progress?.*$', route.get_upload_progress),
 #     url(r'^taskdetail/$',route.taskdetail,name='taskdetail'),
 #     url(r'^taskdetail/eachtask/$',route.ipmain,name='ipmain'),
     url(r'^schoolshow/$',route.schoolshow,name='schoolshow'),

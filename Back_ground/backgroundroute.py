@@ -19,6 +19,29 @@ from model.user import User
 from tool import  connectpool
 import httplib
 import json
+from form import upload_file_form
+from django.core.cache import cache
+import os
+def handle_uploaded_file(f):
+    folderload= os.path.join(os.path.dirname(__file__), '../upload/')
+    filename='a.txt'
+    absolutepath=(folderload+filename).replace('\\','/')
+    with open(absolutepath, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+def upload(request):
+
+    if request.method == 'POST':
+        form = upload_file_form.UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            islogin = request.COOKIES.get('islogin',False)
+
+            if islogin:
+                handle_uploaded_file(request.FILES['file'])
+                return HttpResponse("上传成功")
+    else:
+        form = upload_file_form.UploadFileForm()
+    return HttpResponse("上传失败")
 def hello(request):
     return HttpResponse("Hello world")
 def logout(request):
@@ -53,7 +76,7 @@ def schoolmanage(request):
     islogin = request.COOKIES.get('islogin',False)
     username = request.COOKIES.get('username','')
     if islogin:
-        return render_to_response('backgroundview/school_manage.html',{'username':username})
+        return render_to_response('backgroundview/school_manage.html',{'username':username,'form':upload_file_form.UploadFileForm()})
     return render_to_response('backgroundview/login.html', {'data':''})
 def schoolshow(request):
 

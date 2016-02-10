@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
+
+CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -17,6 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), '../view').replace('\\','/'),
 )
+
+
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -134,3 +141,4 @@ STATICFILES_FINDERS= (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder"
 )
+
