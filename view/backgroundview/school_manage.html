@@ -618,7 +618,7 @@ function destroyjob(taskid){
   <script>
   function upload(event) {
 event.preventDefault();
-var data = new FormData($('form').get(0));
+var data = new FormData($('#file-upload-form').get(0));
 
 $.ajax({
     url: $(this).attr('action'),
@@ -628,10 +628,16 @@ $.ajax({
     processData: false,
     contentType: false,
     success: function(data) {
-        alert(data.result);
+        if(data.result=='1'){
+            alert('上传成功');
+             window.location.reload();
+        }
+        else{
+            alert('上传失败');
+        }
 
 
-            window.location.reload();
+           
 
 
 
@@ -641,7 +647,7 @@ return false;
 }
 
 $(function() {
-    $('form').submit(upload);
+    $('#file-upload-form').submit(upload);
 });
 </script>
 

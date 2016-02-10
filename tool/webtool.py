@@ -41,8 +41,12 @@ def dict2object(d):
 	else:
 		inst = d
 	return inst
-def getlocaltime():
-	return str(time.strftime("%Y-%m-%d %X", time.localtime()))
+def getlocaltime(form=''):
+	if form=='':
+		return str(time.strftime("%Y-%m-%d %X", time.localtime()))
+	else:
+	
+		return str(time.strftime(form, time.localtime()))
 def isip(ip):
 	if re.match('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', ip) != None:
 #   		print 'IP!'
