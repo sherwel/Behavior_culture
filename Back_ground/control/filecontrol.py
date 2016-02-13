@@ -7,8 +7,18 @@ Created on 2016年2月10日
 '''
 import os
 from tool import webtool
-import xlrd  
+import os,sys
+parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+tempdir=parentdir
+dirpath=tempdir.replace('\\','/')
+print dirpath
+sys.path.insert(0,dirpath)
+from  xlsdeal import xlsDeal 
+import xlrd 
+
+
  
+
 def handle_uploaded_file(f):
 
     folderload= os.path.join(os.path.dirname(__file__), '../../upload/')
@@ -20,7 +30,16 @@ def handle_uploaded_file(f):
         with open(absolutepath, 'wb+') as destination:
             for chunk in f.chunks():
                 destination.write(chunk)
+        
     except Exception,e:
         print str(e)+'   file error'
-def getxlsfile(path):
+def getxlsoperate(path):
+    
     pass
+#     dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','state'],"insert_values":insertdata,"extra":extra}
+#     
+#     ans=getattr(xlsDeal.XLSdeal, func,'default')(**Dic)
+    
+    
+    
+    

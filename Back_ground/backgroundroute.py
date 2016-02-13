@@ -3,7 +3,7 @@
 '''
 Created on 2016年1月27日
 
-@author: root
+@author: sherwel
 '''
 
 
@@ -26,6 +26,7 @@ import os
 def upload(request):
     response_data = {}  
     response_data['result'] = '0' 
+    print request.POST
     if request.method == 'POST':
         form = upload_file_form.UploadFileForm(request.POST, request.FILES)
         if form.is_valid():

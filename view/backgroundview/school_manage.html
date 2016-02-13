@@ -300,6 +300,7 @@
 <form name="myform" action="/background/fileupload/" method="post" id="file-upload-form"
        enctype="multipart/form-data">
 {{form}}
+ <input type="hidden"  name="operation"  id="operation"　value="insertschool">
 <br>
 
                             </div>
@@ -619,7 +620,6 @@ function destroyjob(taskid){
   function upload(event) {
 event.preventDefault();
 var data = new FormData($('#file-upload-form').get(0));
-
 $.ajax({
     url: $(this).attr('action'),
     type: $(this).attr('method'),
