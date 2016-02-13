@@ -26,15 +26,17 @@ import os
 def upload(request):
     response_data = {}  
     response_data['result'] = '0' 
-    print request.POST
-    if request.method == 'POST':
+    operation= request.POST.get('operation','')
+    if request.method == 'POST' and operation!='':
         form = upload_file_form.UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             islogin = request.COOKIES.get('islogin',False)
 
             if islogin:
-                filecontrol.handle_uploaded_file(request.FILES['file'])
-                response_data['result'] = '1' 
+                result=filecontrol.handle_uploaded_file(request.FILES['file'],operation)
+                if result:
+                    response_data['result'] = '1' 
+                
                 return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
     else:
         form = upload_file_form.UploadFileForm()

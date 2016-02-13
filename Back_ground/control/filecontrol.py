@@ -19,7 +19,7 @@ import xlrd
 
  
 
-def handle_uploaded_file(f):
+def handle_uploaded_file(f,operation):
 
     folderload= os.path.join(os.path.dirname(__file__), '../../upload/')
     import datetime
@@ -30,15 +30,19 @@ def handle_uploaded_file(f):
         with open(absolutepath, 'wb+') as destination:
             for chunk in f.chunks():
                 destination.write(chunk)
-        
+        return getxlsoperate(absolutepath,operation)
+
     except Exception,e:
         print str(e)+'   file error'
-def getxlsoperate(path):
-    
-    pass
-#     dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','state'],"insert_values":insertdata,"extra":extra}
-#     
-#     ans=getattr(xlsDeal.XLSdeal, func,'default')(**Dic)
+        return False
+def getxlsoperate(path,operation):
+    print path,operation
+    Dic={'path':path}
+#     print xlsDeal.Xlsdeal.version
+#     ans=xlsDeal.Xlsdeal.insertschool(path=path)
+    ans=getattr(xlsDeal.Xlsdeal, operation,'default')(**Dic)
+
+    return ans
     
     
     
