@@ -6,7 +6,7 @@ Created on 2016年2月13日
 @author: root
 '''
 import xlrd
-def getdata(path,sheet):
+def getdata(path,sheet,col=''):
     dataset=[]
     try:  
         data = xlrd.open_workbook(path) 
@@ -16,9 +16,12 @@ def getdata(path,sheet):
 #         ncols = table.ncols #获取列数
         
         for rownum in range(table.nrows):
-            data=table.row_values(rownum)
-            rowdata=tuple(data)
-            dataset.append(rowdata)
+            if col=='':
+                data=table.row_values(rownum)
+                rowdata=tuple(data)
+                dataset.append(rowdata)
+            else:
+                pass
         return dataset
     except Exception,e:  
         print str(e)

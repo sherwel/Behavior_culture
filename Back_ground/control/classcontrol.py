@@ -35,7 +35,7 @@ def classshow(schoolname='',schoolid='',gradeid='',classid='',classname='',page=
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
     table=localconfig.schooltable
-    result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.classtable,localconfig.classnametable], ['schoolName','t_classes.schoolId','t_classes.gradeId','t_class_name.cId','t_class_name.className','t_classes.classId'], request_params, values_params)
+    result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.classtable,localconfig.classnametable], ['schoolName','t_classes.schoolId','t_classes.gradeId','cId','t_class_name.className','t_classes.classId'], request_params, values_params)
 
     if count == 0:
         pagecount = 0;
@@ -51,7 +51,7 @@ def classshow(schoolname='',schoolid='',gradeid='',classid='',classname='',page=
     if pagecount>0:
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.classtable,localconfig.classnametable], ['schoolName','t_classes.schoolId','t_classes.gradeId','t_class_name.cId','t_class_name.className','t_classes.classId'], request_params, values_params,limit,order='schoolId desc')
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.classtable,localconfig.classnametable], ['schoolName','t_classes.schoolId','t_classes.gradeId','cId','t_class_name.className','t_classes.classId'], request_params, values_params,limit,order='schoolId desc')
 
         DBhelp.closedb()
         classes=[]

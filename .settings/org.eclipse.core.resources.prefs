@@ -11,6 +11,7 @@ encoding//Back_ground/model/Class.py=utf-8
 encoding//Back_ground/model/school.py=utf-8
 encoding//Back_ground/urls.py=utf-8
 encoding//Back_ground/xlsdeal/xlsDeal.py=utf-8
+encoding//Back_ground/xlsdeal/xls_opertate/class_operate.py=utf-8
 encoding//Back_ground/xlsdeal/xls_opertate/school_operate.py=utf-8
 encoding//Back_ground/xlsdeal/xls_opertate/xlstool.py=utf-8
 encoding//Behavior_culture/settings.py=utf-8
