@@ -134,29 +134,32 @@
                     <span>首页</span>
                 </a>
             </li>            
-          <li class="active">
+  	<li>
                 <a class="dropdown-toggle" href="#">
-                    <div class="pointer">
-                        <div class="arrow"></div>
-                        <div class="arrow_border"></div>
-                    </div>
                     <i class="icon-sitemap"></i>
                     <span>学校</span>
                     <i class="icon-chevron-down"></i>
                 </a>
-                <ul class="active submenu">
-                    <li><a href="/background/schoolmanage/" class="active">学校列表</a></li>
+                <ul class="submenu">
+                    <li><a href="/background/schoolmanage/">学校列表</a></li>
             
                 </ul>
             </li>
-            <li>
-                <a class="dropdown-toggle" href="tables.html">
+            <li class="active">
+                <a class="dropdown-toggle" href="#">
+             	  <div class="pointer">
+                        <div class="arrow"></div>
+                        <div class="arrow_border"></div>
+                    </div>
+
                     <i class="icon-th-large"></i>
+
                     <span>班级</span>
                     <i class="icon-chevron-down"></i>
+     
                 </a>
-                <ul class="submenu">
-                    <li><a href="/background/classmanage/">班级列表</a></li>
+                <ul  class="active submenu">
+                    <li><a href="/background/classmanage/" class="active">班级列表</a></li>
                     <li><a href="#">表格</a></li>
                 </ul>
             </li>
@@ -223,7 +226,7 @@
             <div class="table-products section">
                 <div class="row head">
                     <div class="col-md-12">
-                        <h4>学校列表 <small>概要</small></h4>
+                        <h4>班级列表 <small>概要</small></h4>
                     </div>
                 </div>
  <div id="pad-wrapper">
@@ -233,19 +236,18 @@
                             <select>
                                  <option>按校名</option>
                               <option>按校ID</option>
-                              <option>按省份</option>
-                              <option>按城市</option>
+                              <option>按年级id</option>
                             </select>
                         </div>
                         <input type="text" class="search">
-                        <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-19990" role="button">+ 新增学校</a>
+                   <!--      <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-19990" role="button">+ 新增班级</a>
 
                         <div id="modal-container-19990" class="modal  fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                      <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h5 class="modal-title">新增学校</h5>
+                            <h5 class="modal-title">新增班级</h5>
                         </div>
                         <div class="modal-body">
 
@@ -273,30 +275,24 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                             <button type="button" class="btn btn-primary" onclick="createdata()">创建</button>
                         </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div>
+                    </div>
+                </div>
+            </div> -->
 
-  <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-123" role="button">批量导入学校</a>
+  <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-123" role="button">批量导入班级</a>
 
                         <div id="modal-container-123" class="modal  fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                      <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h5 class="modal-title">导入学校</h5>
+                            <h5 class="modal-title">导入班级</h5>
                         </div>
                         <div class="modal-body">
 
                             <div class="form-group">
                       
-<!--   <form name="myform" action="/background/fileupload/" method="post"
-       enctype="multipart/form-data">
-       <br>
-     文件:  <input type="file" name="xlsfile"　><br>
-       <br>
-       <input type="submit" name="submit" class="btn btn-primary"　value="上传">
-    </form> -->
+
 <form name="myform" action="/background/fileupload/" method="post" id="file-upload-form"
        enctype="multipart/form-data">
 
@@ -337,17 +333,24 @@
                                     <input type="checkbox">
                                     校名
                                 </th>
-                                    <th class="col-md-3">
+                                    <th class="col-md-1">
                                      <span class="line"></span>
                                     校ID
                                 </th>
+                                <th class="col-md-1">
+                                    <span class="line"></span>年级Id
+                                </th>
+                                <th class="col-md-1">
+                                    <span class="line"></span>班级号
+                                </th>
+
                                 <th class="col-md-2">
-                                    <span class="line"></span>省份
+                                    <span class="line"></span>班级名称
                                 </th>
                                 <th class="col-md-2">
-                                    <span class="line"></span>城市
+                                    <span class="line"></span>班级ID
                                 </th>
-                                      <th class="col-md-3">
+                                <th class="col-md-3">
                                     <span class="line"></span>操作
                                 </th>
                             </tr>
@@ -416,7 +419,7 @@
             var str='';
             str='page='+number;
             nowpage=currpage;
-            xmlhttp.open("POST","/background/schoolshow/",false);
+            xmlhttp.open("POST","/background/classshow/",false);
             xmlhttp.onreadystatechange = callback;
             xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             xmlhttp.send(str);   
@@ -501,7 +504,7 @@ function destroyjob(taskid){
             var datalength=data2.length;
             var pagesize=data2.pagecount;
             var nowpage=data2.page
-             school=data2.school;
+             classes=data2.Classes;
             currpage=Number(nowpage)+1;
               var bodyhtml = "";
             
@@ -518,10 +521,12 @@ function destroyjob(taskid){
                      bodyhtml+="<tr>"+
                                         "<td><input type=\"checkbox\">"+
                                             "<div class=\"img\"><img src=\"/static/background/img/owl.png\"></div>"+
-                                            "<a href=\"/background/schooldetail?schoolid="+school[i].schoolid+"\">"+school[i].schoolname +"</a></td>"+
-                                        "<td class=\"description\">"+school[i].schoolid+"</td>"+
-                                        "<td class=\"description\">"+school[i].province+"</td>"+
-                                        "<td class=\"description\">"+school[i].city+"</td>"+
+                                            "<a href=\"/background/schooldetail?schoolid="+classes[i].schoolid+"\">"+classes[i].schoolname +"</a></td>"+
+                                        "<td class=\"description\">"+classes[i].schoolid+"</td>"+
+                                        "<td class=\"description\">"+classes[i].gradeid+"</td>"+
+                                        "<td class=\"description\">"+classes[i].cid+"</td>"+
+                                         "<td class=\"description\">"+classes[i].classname+"</td>"+
+                                        "<td class=\"description\">"+classes[i].classid+"</td>"+
                                         "<td><ul class=\"actions\">"+
                                             "<li><i class=\"table-edit\"></i></li>"+
                                             "<li><i class=\"table-settings\"></i></li>"+

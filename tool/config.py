@@ -11,9 +11,9 @@ class Config(object):
 	cachemax=30
 	cachemin=1
 	schooltable='t_school'
-	porttable='snifferdata'
+	classtable='t_classes'
 	usertable='t_login'
-	tasktable='taskdata'
+	classnametable='t_class_name'
 	iptable='ip_maindata'
 	
 		
