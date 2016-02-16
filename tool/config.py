@@ -14,6 +14,7 @@ class Config(object):
 	classtable='t_classes'
 	usertable='t_login'
 	classnametable='t_class_name'
-	iptable='ip_maindata'
+	studenttable='t_student'
+	student_attend_table='t_students_attend_class'
 	
 		

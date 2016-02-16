@@ -12,7 +12,7 @@ from django.http import HttpResponse,HttpResponseRedirect,HttpResponseNotFound
 import datetime
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from control import usercontrol,schoolcontrol,filecontrol,classcontrol
+from control import usercontrol,schoolcontrol,filecontrol,classcontrol,studentcontrol
 from django.views import generic
 from tool import webtool
 from model.user import User
@@ -77,6 +77,12 @@ def classmanage(request):
     if islogin:
         return render_to_response('backgroundview/class_manage.html',{'username':username,'form':upload_file_form.UploadFileForm()})
     return render_to_response('backgroundview/login.html', {'data':''})
+def studentmanage(request):
+    islogin = request.COOKIES.get('islogin',False)
+    username = request.COOKIES.get('username','')
+    if islogin:
+        return render_to_response('backgroundview/student_manage.html',{'username':username,'form':upload_file_form.UploadFileForm()})
+    return render_to_response('backgroundview/login.html', {'data':''})
 
 def schoolmanage(request):
     islogin = request.COOKIES.get('islogin',False)
@@ -123,6 +129,26 @@ def classshow(request):
         classes,count,pagecount=classcontrol.classshow(schoolname=schoolname,page=page,classid=classid,gradeid=gradeid,schoolid=schoolid,classname=classname)
         response_data['length']=count
         response_data['Classes']=classes
+        response_data['pagecount']=pagecount
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+    else:
+        
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+def studentshow(request):
+
+    islogin = request.COOKIES.get('islogin',False)
+    studentid=request.POST.get('studentid','')
+    classid=request.POST.get('classid','')
+
+    page=request.POST.get('page','0')
+    response_data = {}  
+    response_data['result'] = '0' 
+    response_data['page']=page
+    if islogin:
+        response_data['result'] = '1' 
+        students,count,pagecount=studentcontrol.studentshow(studentid=studentid,page=page,classid=classid)
+        response_data['length']=count
+        response_data['students']=students
         response_data['pagecount']=pagecount
         return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
     else:
