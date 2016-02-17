@@ -12,11 +12,10 @@ from django.http import HttpResponse,HttpResponseRedirect,HttpResponseNotFound
 import datetime
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from control import usercontrol,schoolcontrol,filecontrol,classcontrol,studentcontrol
+from control import usercontrol,schoolcontrol,filecontrol,classcontrol,studentcontrol,teachercontrol
 from django.views import generic
 from tool import webtool
 from model.user import User
-from tool import  connectpool
 import httplib
 import json
 from form import upload_file_form
@@ -82,6 +81,12 @@ def studentmanage(request):
     username = request.COOKIES.get('username','')
     if islogin:
         return render_to_response('backgroundview/student_manage.html',{'username':username,'form':upload_file_form.UploadFileForm()})
+    return render_to_response('backgroundview/login.html', {'data':''})
+def teachermanage(request):
+    islogin = request.COOKIES.get('islogin',False)
+    username = request.COOKIES.get('username','')
+    if islogin:
+        return render_to_response('backgroundview/teacher_manage.html',{'username':username,'form':upload_file_form.UploadFileForm()})
     return render_to_response('backgroundview/login.html', {'data':''})
 
 def schoolmanage(request):
@@ -154,6 +159,27 @@ def studentshow(request):
     else:
         
         return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+def teachershow(request):
+
+    islogin = request.COOKIES.get('islogin',False)
+    teacherid=request.POST.get('teacherid','')
+    schoolid=request.POST.get('schoolid','')
+
+    page=request.POST.get('page','0')
+    response_data = {}  
+    response_data['result'] = '0' 
+    response_data['page']=page
+    if islogin:
+        response_data['result'] = '1' 
+        teachers,count,pagecount=teachercontrol.teachershow(teacherid=teacherid,page=page,schoolid=schoolid)
+        response_data['length']=count
+        response_data['teachers']=teachers
+        response_data['pagecount']=pagecount
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+    else:
+        
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+
 
 # def getschool(request):   
 #     if request.method=='POST':

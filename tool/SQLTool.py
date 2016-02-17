@@ -366,21 +366,7 @@ class DBmanager:
 def formatstring(str):
 	return '\''+str+'\''
 if __name__ == "__main__":
-	SQLtool=DBmanager()
-	SQLtool.connectdb()
-	localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
-	insertdata=[]
-#		 insertdata.append((str(ip),port,localtime,str(ans),str(ans),localtime))
-
-#		 self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','detail' ],insertdata)
-# 	extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
-# 	insertdata.append(('111.111.111.1','1','2014-08-08 11:11:11','str(ans)','str(ans)','2014-08-08 11:11:11'))
-#		 self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','detail' ],insertdata)
-# 	SQLtool.inserttableinfo_byparams(config.Config.porttable,['ip','port','timesearch','detail'],insertdata,updatevalue=['detail','timesearch'])
-	insertdata.append(('110.110.110.110','1',localtime,'open'))
-	extra=' on duplicate key update  detail=\'open\' , timesearch=\''+localtime+'\''
-	SQLtool.inserttableinfo_byparams(config.Config.porttable,['ip','port','timesearch','detail'],insertdata,extra)
-	SQLtool.closedb()
+	pass
 	
 	
 	

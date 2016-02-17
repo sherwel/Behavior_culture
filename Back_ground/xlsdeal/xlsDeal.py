@@ -5,7 +5,7 @@ Created on 2016年2月12日
 
 @author: sherwel
 '''
-from xls_opertate import class_operate,school_operate,student_operate
+from xls_opertate import class_operate,school_operate,student_operate,teacher_operate
 class Xlsdeal():
 
 
@@ -25,5 +25,10 @@ class Xlsdeal():
     @staticmethod
     def insertstudent(path=''):
         result=student_operate.loadstudent(path)
+        print result
+        return result
+    @staticmethod
+    def insertteacher(path=''):
+        result=teacher_operate.loadteacher(path)
         print result
         return result

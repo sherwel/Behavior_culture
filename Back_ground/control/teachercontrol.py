@@ -1,66 +1,47 @@
 #!/usr/bin/python
 #coding:utf-8
 from tool import SQLTool ,config
-from Back_ground.model import student
+from Back_ground.model import teacher
 
 
 limitpage=15
 
 
 localconfig=config.Config()
-def studentshow(studentid='',name='',sex='',birthday='',address='',familyPhone='',mail='',family='',admissionTime='',nation='',placeOfOrigin='',team='',classid='',page='0'):
+def teachershow(schoolid='',teacherid='',name='',phone='',offer='',job='',schoolname='',page='0'):
     validresult=False
     request_params=[]
     values_params=[]
-    if studentid!='':
-        request_params.append('t_student.studentId')
-        values_params.append(SQLTool.formatstring(studentid))
+    if schoolid!='':
+        request_params.append('t_teachers.schoolId')
+        values_params.append(SQLTool.formatstring(schoolid))
+    if teacherid!='':
+        request_params.append('teacherId')
+        values_params.append(SQLTool.formatstring(teacherid))
     if name!='':
-        request_params.append('name')
+        request_params.append('teacherName')
         values_params.append(SQLTool.formatstring(name))
-    if sex!='':
-        request_params.append('sex')
-        values_params.append(SQLTool.formatstring(sex))
-    if birthday!='':
-        request_params.append('birthday')
-        values_params.append(SQLTool.formatstring(birthday))
-    if address!='':
-        request_params.append('address')
-        values_params.append(SQLTool.formatstring(address))
-    if familyPhone!='':
-        request_params.append('familyPhone')
-        values_params.append(SQLTool.formatstring(familyPhone))
-    if mail!='':
-        request_params.append('mail')
-        values_params.append(SQLTool.formatstring(mail))
-    if family!='':
-        request_params.append('family')
-        values_params.append(SQLTool.formatstring(family))
-    if admissionTime!='':
-        request_params.append('admissionTime')
-        values_params.append(SQLTool.formatstring(admissionTime))
-    if nation!='':
-        request_params.append('nation')
-        values_params.append(SQLTool.formatstring(nation))
-        
-    if placeOfOrigin!='':
-        request_params.append('placeOfOrigin')
-        values_params.append(SQLTool.formatstring(placeOfOrigin))
-    if team!='':
-        request_params.append('team')
-        values_params.append(SQLTool.formatstring(team))
-    if classid!='':
-        request_params.append('t_student.classId')
-        values_params.append(SQLTool.formatstring(classid))
-
-    request_params.append('t_students_attend_class.studentId')
-    values_params.append('t_student.studentId')
+    if phone!='':
+        request_params.append('teacherPhone')
+        values_params.append(SQLTool.formatstring(phone))
+    if offer!='':
+        request_params.append('offer')
+        values_params.append(SQLTool.formatstring(offer))
+    if job!='':
+        request_params.append('jobTitle')
+        values_params.append(SQLTool.formatstring(job))
+    if schoolname!='':
+        request_params.append('schoolName')
+        values_params.append(SQLTool.formatstring(schoolname))
+   
+    request_params.append('t_school.schoolId')
+    values_params.append('t_teachers.schoolId')
 
 
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
-    table=localconfig.studenttable
-    result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.student_attend_table], ['t_student.studentId','name','sex','birthday','address','familyPhone','mail','family','admissionTime','nation','placeOfOrigin','team','t_student.classId'], request_params, values_params)
+    table=localconfig.teachertable
+    result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.schooltable], ['t_teachers.schoolId','teacherId','teacherName','teacherPhone','offer','jobTitle','schoolName'], request_params, values_params)
 
     if count == 0:
         pagecount = 0;
@@ -76,18 +57,18 @@ def studentshow(studentid='',name='',sex='',birthday='',address='',familyPhone='
     if pagecount>0:
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.student_attend_table], ['t_student.studentId','name','sex','birthday','address','familyPhone','mail','family','admissionTime','nation','placeOfOrigin','team','t_students_attend_class.classId'], request_params, values_params,limit,order=' time desc ,t_student.studentId desc')
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.schooltable], ['t_teachers.schoolId','teacherId','teacherName','teacherPhone','offer','jobTitle','schoolName'], request_params, values_params,limit,order=' teacherId desc')
 
         DBhelp.closedb()
-        students=[]
+        teachers=[]
         if count>0:
             validresult=True
             for temp in result :
-                astudent=student.Student(studentid=temp['studentId'],name=temp['name'],address=temp['address'],familyPhone=temp['familyPhone'],classid=temp['classId'],family=temp['family'])
+                ateacher=teacher.Teacher(schoolid=temp['schoolId'],teacherid=temp['teacherId'],name=temp['teacherName'],phone=temp['teacherPhone'],offer=temp['offer'],job=temp['jobTitle'],schoolname=temp['schoolName'])
 
 
-                students.append(astudent)
-        return students,count,pagecount
+                teachers.append(ateacher)
+        return teachers,count,pagecount
     return [],0,pagecount
 ##count为返回结果行数，col为返回结果列数,count,pagecount都为int型
 def loadclass(request,username=''):

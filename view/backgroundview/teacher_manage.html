@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,8 +38,7 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
-<!-- <body onload="loadtask(0);"> -->
-<body onload="">
+<body onload="loadtask(0);">
     <!-- navbar -->
     <header class="navbar navbar-inverse" role="banner">
         <div class="navbar-header">
@@ -128,17 +127,14 @@
     <!-- sidebar -->
     <div id="sidebar-nav">
         <ul id="dashboard-menu">
-            <li class="active">
-                <div class="pointer">
-                    <div class="arrow"></div>
-                    <div class="arrow_border"></div>
-                </div>
+            <li >
+    
                 <a href="/background/mainpage">
                     <i class="icon-home"></i>
                     <span>首页</span>
                 </a>
             </li>            
-          <li>
+  	<li>
                 <a class="dropdown-toggle" href="#">
                     <i class="icon-sitemap"></i>
                     <span>学校</span>
@@ -149,26 +145,34 @@
             
                 </ul>
             </li>
-            <li>
-                <a class="dropdown-toggle" href="tables.html">
+            <li >
+                <a class="dropdown-toggle" href="#">
+    
+
                     <i class="icon-th-large"></i>
+
                     <span>班级</span>
                     <i class="icon-chevron-down"></i>
+     
                 </a>
-                <ul class="submenu">
-                    <li><a href="/background/classmanage/">班级列表</a></li>
+                <ul  class=" submenu">
+                    <li><a href="/background/classmanage/" >班级列表</a></li>
                     <li><a href="#">表格</a></li>
                 </ul>
             </li>
-            <li>
+            <li class="active">
                 <a class="dropdown-toggle" href="#">
+                    <div class="pointer">
+                        <div class="arrow"></div>
+                        <div class="arrow_border"></div>
+                    </div>
                     <i class="icon-group"></i>
                     <span>用户</span>
                     <i class="icon-chevron-down"></i>
                 </a>
-                <ul class="submenu">
-                    <li><a href="/background/studentmanage/">学生列表</a></li>
-                    <li><a href="/background/teachermanage/">教师列表</a></li>
+                <ul class="active submenu">
+                    <li><a href="/background/studentmanage/" >学生列表</a></li>
+                    <li><a href="/background/teachermanage/" class="active">教师列表</a></li>
                     <li><a href="#">家长列表</a></li>
                 </ul>
             </li>
@@ -207,85 +211,168 @@
     <!-- end sidebar -->
 
 	<!-- main container -->
-    <div class="content">
+   <div class="content">
 
 
- <div class="container-fluid">
-     <div id="pad-wrapper">
 
+    
+
+        <div id="pad-wrapper">
+
+         
+            <!-- end UI elements section -->
+
+            <!-- table sample -->
+            <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
             <div class="table-products section">
                 <div class="row head">
                     <div class="col-md-12">
-                        <h4>截止目前 <small>共有</small></h4>
+                        <h4>教师列表 <small>概要</small></h4>
                     </div>
                 </div>
-            </div>
-     <div id="main-stats">
-            
-                <div class="row-fluid stats-row">
-
-                    <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">200</span>
-                            所
-                        </div>
-                        <span class="date">学校使用数</span>
-                    </div>
-                    <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">3000</span>
-                            个
-                        </div>
-                        <span class="date">班级数量</span>
-                    </div>
-                    <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">16543</span>
-                            个
-                        </div>
-                        <span class="date">学生数量</span>
-                    </div>
-                     <div class="span3 stat">
-                        <div class="data">
-                            <span class="number">54322</span>
-                            个
-                        </div>
-                        <span class="date">评价数量</span>
-                    </div>
-                </div>
-            </div>
-</div>
  <div id="pad-wrapper">
-            <div class="table-products section">
-                <div class="row head">
-                    <div class="col-md-12">
-                        <h4>使用说明 <small>：</small></h4>
+                <div class="row filter-block">
+                    <div class="col-md-8 col-md-offset-5">
+                        <div class="ui-select">
+                            <select>
+                                 <option>按姓名</option>
+                              <option>按教师ID</option>
+                              <option>按学校ID</option>
+                            </select>
+                        </div>
+                        <input type="text" class="search">
+                   <!--      <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-19990" role="button">+ 新增班级</a>
+
+                        <div id="modal-container-19990" class="modal  fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h5 class="modal-title">新增班级</h5>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                      
+
+                                <input type="label" style="border:0px;" class="form-control" value="学校名" />
+                                <input type="text" class="form-control"   id="jobname" />
+                                <input type="label" style="border:0px;" class="form-control" value="省份" />
+                                <input type="text" class="form-control"   id="jobaddress" />
+                                <input type="label" style="border:0px;" class="form-control" value="城市" />
+                                <input type="text" class="form-control"   id="jobport" />
+                                <input type="label" style="border:0px;" class="form-control" value="校ID" />
+                                <input type="text" class="form-control"   id="priority" value="1"/>
+ 
+
+
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" onclick="createdata()">创建</button>
+                        </div>
                     </div>
                 </div>
+            </div> -->
+
+  <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-123" role="button">批量导入教师</a>
+
+                        <div id="modal-container-123" class="modal  fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h5 class="modal-title">导入教师</h5>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                      
+
+<form name="myform" action="/background/fileupload/" method="post" id="file-upload-form"
+       enctype="multipart/form-data">
+
+{{form}}
+
+ 
+<br>
+                <input type="hidden"    id="operation"  name="operation" value="insertteacher"/>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <input type="submit" name="submit" class="btn btn-primary" id='upload-btn'　value="上传">
+                        </div>
+
+</form>
+
+
+                        
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
             </div>
 
-                    <!-- bio, new note & orders column -->
-                    <div class="span9 bio">
-                        <div class="profile-box">
-                            <!-- biography -->
-                            <div class="span12 section">
-                                <h6>参考</h6>
-                                <p>在侧边栏点击对应的链接进行相关操作. </p>
-                            </div>
-                        </div>
-                           </div>
-                            
-</div>
-
-
-
 
 
                     </div>
                 </div>
 
+                <div class="row">
+                    <table class="table table-hover" id="tableId">
+                        <thead>
+                            <tr>
+                                <th class="col-md-4">
+                                    <input type="checkbox">
+                                    教师ID
+                                </th>
+                                    <th class="col-md-1">
+                                     <span class="line"></span>
+                                    姓名
+                                </th>
+                                <th class="col-md-1">
+                                    <span class="line"></span>电话
+                                </th>
+                                <th class="col-md-1">
+                                    <span class="line"></span>位置
+                                </th>
+                                <th class="col-md-2">
+                                    <span class="line"></span>职称
+                                </th>
+                                <th class="col-md-2">
+                                    <span class="line"></span>学校
+                                </th>
+                            
+                                <th class="col-md-3">
+                                    <span class="line"></span>操作
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="head">
+                   
+                       
+                        </tbody>
+                    </table>
+                </div>
+                <ul class="pagination" id="page">
+                 
+                </ul>
+            </div>
+            <div>
+            <!-- end table sample -->
+        </div>
+    </div>
 
 	<!-- scripts -->
+        <script src="/static/background/js/jquery.form.js"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="/static/background/js/bootstrap.min.js"></script>
     <script src="/static/background/js/jquery-ui-1.10.2.custom.min.js"></script>
@@ -303,7 +390,7 @@
         var nextpagehtml;
         var pagesize=0;
         var nowpage=0;
-        var jobs=null;
+        var school=null;
         //创建XMLHttpRequest对象
         function GetXmlHttp(xmlhttp){
             if(window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
@@ -331,9 +418,9 @@
             xmlhttp= GetXmlHttp(xmlhttp);
             var number=currpage;
             var str='';
-            str='page='+number+'&username='+message;
+            str='page='+number;
             nowpage=currpage;
-            xmlhttp.open("POST","/background/jobshow/",false);
+            xmlhttp.open("POST","/background/teachershow/",false);
             xmlhttp.onreadystatechange = callback;
             xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             xmlhttp.send(str);   
@@ -354,17 +441,17 @@
             }
         }
 function startjob(taskid){
-            localjobid=jobs[taskid].jobid;
+            localjobid=school[taskid].jobid;
             xmlhttp= GetXmlHttp(xmlhttp);
             var str='';
             str='taskid='+localjobid;
-            xmlhttp.open("POST","/background/jobstart/",false);
+            xmlhttp.open("POST","/background/schoolstart/",false);
             xmlhttp.onreadystatechange = jobcallback;
             xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             xmlhttp.send(str);   
 }
 function pausejob(taskid){
-            localjobid=jobs[taskid].jobid;
+            localjobid=school[taskid].jobid;
             xmlhttp= GetXmlHttp(xmlhttp);
             var str='';
             str='taskid='+localjobid;
@@ -375,7 +462,7 @@ function pausejob(taskid){
 }
 
 function destroyjob(taskid){
-            localjobid=jobs[taskid].jobid;
+            localjobid=school[taskid].jobid;
             xmlhttp= GetXmlHttp(xmlhttp);
             var str='';
             str='taskid='+localjobid;
@@ -418,7 +505,7 @@ function destroyjob(taskid){
             var datalength=data2.length;
             var pagesize=data2.pagecount;
             var nowpage=data2.page
-             jobs=data2.jobs;
+             teachers=data2.teachers;
             currpage=Number(nowpage)+1;
               var bodyhtml = "";
             
@@ -431,37 +518,17 @@ function destroyjob(taskid){
              
 
                 for (var i = 0; i < datalength; i++) {
-                     var labelstatus=''
-                     var Active='';
-                     statuss=jobs[i].jobstatus;
-
-                     switch(statuss){
-                        case '1':Active='未启动';labelstatus='default';break;
-                        case '2':Active='正在排队';labelstatus='info';break;
-                        case '3':Active='正在执行';labelstatus='primary';break;
-                        case '4':Active='挂起';labelstatus='warning';break;
-                        case '5':Active='已完成';labelstatus='success';break;
-                        case '6':Active='已终止';labelstatus='danger';break;
-                        default:Active='未知';labelstatus='danger';break;
-                     }
-
-             
-                     var temport=''
-                     if (jobs[i].jobport==''){
-                        temport='全部可用端口';
-                     }
-                     else
-                        temport=jobs[i].jobport;
+                   
                      bodyhtml+="<tr>"+
                                         "<td><input type=\"checkbox\">"+
                                             "<div class=\"img\"><img src=\"/static/background/img/owl.png\"></div>"+
-                                            "<a href=\"/background/taskdetail?jobid="+jobs[i].jobid+"\">"+jobs[i].jobname +"</a></td>"+
-                                        "<td class=\"description\">"+jobs[i].jobaddress+"</td>"+
-                                        "<td class=\"description\">"+temport+"</td>"+
-                                        "<td><span class=\"label label-"+labelstatus+"\">"+Active+"</span><ul class=\"actions\">"+
-                                     
-                                            "<li onclick='startjob("+i+");'><i class=\"table-start\" ></i></li>"+
-                                            "<li onclick='pausejob("+i+");'><i class=\"table-pause\"></i></li>"+
+                                            "<a href=\"/background/schooldetail?schoolid="+teachers[i].teacherid+"\">"+teachers[i].teacherid +"</a></td>"+
+                                        "<td class=\"description\">"+teachers[i].name+"</td>"+
+                                        "<td class=\"description\">"+teachers[i].phone+"</td>"+
+                                        "<td class=\"description\">"+teachers[i].offer+"</td>"+
+                                         "<td class=\"description\">"+teachers[i].job+"</td>"+
+                                        "<td class=\"description\">"+teachers[i].schoolname+"</td>"+
+                                        "<td><ul class=\"actions\">"+
                                             "<li><i class=\"table-edit\"></i></li>"+
                                             "<li><i class=\"table-settings\"></i></li>"+
                                             "<li class=\"last\" onclick='destroyjob("+i+");'><i class=\"table-delete\"></i></li>"+
@@ -557,7 +624,40 @@ function destroyjob(taskid){
 
 </script>
     
-  
+  <script>
+  function upload(event) {
+event.preventDefault();
+var data = new FormData($('#file-upload-form').get(0));
+$.ajax({
+    url: $(this).attr('action'),
+    type: $(this).attr('method'),
+    data: data,
+    cache: false,
+    processData: false,
+    contentType: false,
+    success: function(data) {
+        if(data.result=='1'){
+            alert('上传成功');
+             window.location.reload();
+        }
+        else{
+            alert('上传失败');
+        }
+
+
+           
+
+
+
+    }
+});
+return false;
+}
+
+$(function() {
+    $('#file-upload-form').submit(upload);
+});
+</script>
 
 </body>
 </html>

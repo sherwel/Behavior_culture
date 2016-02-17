@@ -15,6 +15,7 @@ class Config(object):
 	usertable='t_login'
 	classnametable='t_class_name'
 	studenttable='t_student'
+	teachertable='t_teachers'
 	student_attend_table='t_students_attend_class'
 	
 		
