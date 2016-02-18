@@ -32,3 +32,9 @@ class Xlsdeal():
         result=teacher_operate.loadteacher(path)
         print result
         return result
+    @staticmethod
+    def inserthaveclass(path=''):
+        result=class_operate.loadclasstake(path)
+        print result
+        return result    
+    

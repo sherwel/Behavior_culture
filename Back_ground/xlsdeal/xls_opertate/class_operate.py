@@ -36,7 +36,23 @@ def loadclass(path):
         result=sqlhelp.inserttableinfo_byparams(config.Config.classnametable, ['className','classId'], classnamedata)
  
     return result
+def loadclasstake(path):
+    
+    data=xlstool.getdata(path, u'上课表')
+    classdata=[]
+    for i in data:
+        temp=list(i)
+        classid=uuid.uuid1()
+        print classid
+#         temp.append('classid')
+        classdata.append((temp[0],temp[1],temp[2],temp[3]))
 
+          
+    sqlhelp=SQLTool.getObject()
+    sqlhelp.connectdb()
+    result=sqlhelp.inserttableinfo_byparams(config.Config.teachtable, ['techerId','classId','masterId','time'], classdata)
+
+    return result
 
 if __name__ == '__main__':
     loadclass('/root/github/Behavior_culture/Back_ground/xlsdeal/xls_opertate/class.xls')
