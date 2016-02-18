@@ -17,5 +17,9 @@ class Config(object):
 	studenttable='t_student'
 	teachertable='t_teachers'
 	student_attend_table='t_students_attend_class'
+	sevaluation_table='t_student_evaluation'
+	cevaluation_table='t_content_evaluation'
+	tevaluation_table='t_teacher_evaluation'
+	fevaluation_table='t_family_evaluation'
 	
 		

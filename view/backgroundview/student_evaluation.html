@@ -160,32 +160,33 @@
                     <li><a href="#">表格</a></li>
                 </ul>
             </li>
-            <li class="active">
+            <li>
+                <a class="dropdown-toggle" href="#">
+           
+                    <i class="icon-group"></i>
+                    <span>用户</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class=" submenu">
+                    <li><a href="/background/studentmanage/" >学生列表</a></li>
+                    <li><a href="/background/teachermanage/" >教师列表</a></li>
+                    <li><a href="/background/familyevaluation/">家长列表</a></li>
+                </ul>
+            </li>
+  　　 <li  class="active">
                 <a class="dropdown-toggle" href="#">
                     <div class="pointer">
                         <div class="arrow"></div>
                         <div class="arrow_border"></div>
                     </div>
-                    <i class="icon-group"></i>
-                    <span>用户</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="active submenu">
-                    <li><a href="/background/studentmanage/" class="active">学生列表</a></li>
-                    <li><a href="/background/teachermanage/">教师列表</a></li>
-                    <li><a href="#">家长列表</a></li>
-                </ul>
-            </li>
-  　　 <li>
-                <a class="dropdown-toggle" href="#">
                     <i class="icon-comment"></i>
                     <span>评价</span>
                     <i class="icon-chevron-down"></i>
                 </a>
-                <ul class="submenu">
-                    <li><a href="/background/studentevaluation/">学生评价</a></li>
+                <ul class="active submenu">
+                    <li><a href="/background/studentevaluation/" class="active">学生评价</a></li>
                     <li><a href="/background/teacherevaluation/">教师评价</a></li>
-                    <li><a href="/background/familyevaluation/">家长评价</a></li>
+                    <li><a href="#">家长评价</a></li>
                 </ul>
             </li>
    
@@ -227,7 +228,7 @@
             <div class="table-products section">
                 <div class="row head">
                     <div class="col-md-12">
-                        <h4>学生列表 <small>概要</small></h4>
+                        <h4>学生评价列表 <small>概要</small></h4>
                     </div>
                 </div>
  <div id="pad-wrapper">
@@ -236,8 +237,8 @@
                         <div class="ui-select">
                             <select>
                                  <option>按姓名</option>
-                              <option>按学号</option>
-                              <option>按班级ID</option>
+                              <option>按ID</option>
+                            
                             </select>
                         </div>
                         <input type="text" class="search">
@@ -280,14 +281,14 @@
                 </div>
             </div> -->
 
-  <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-123" role="button">批量导入学生</a>
+  <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-123" role="button">批量导入评价</a>
 
                         <div id="modal-container-123" class="modal  fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                      <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h5 class="modal-title">导入学生</h5>
+                            <h5 class="modal-title">导入评价</h5>
                         </div>
                         <div class="modal-body">
 
@@ -301,7 +302,7 @@
 
  
 <br>
-                <input type="hidden"    id="operation"  name="operation" value="insertstudent"/>
+                <input type="hidden"    id="operation"  name="operation" value="insertevalution"/>
                             </div>
 
 
@@ -332,25 +333,24 @@
                             <tr>
                                 <th class="col-md-4">
                                     <input type="checkbox">
-                                    学生ID
+                                    ID
                                 </th>
                                     <th class="col-md-1">
                                      <span class="line"></span>
-                                    姓名
+                                    评价对象
                                 </th>
                                 <th class="col-md-1">
-                                    <span class="line"></span>地址
+                                    <span class="line"></span>得分
                                 </th>
                                 <th class="col-md-1">
-                                    <span class="line"></span>电话
+                                    <span class="line"></span>内容
                                 </th>
-                                <th class="col-md-2">
-                                    <span class="line"></span>家长
+                                <th class="col-md-1">
+                                    <span class="line"></span>时间
                                 </th>
-                                <th class="col-md-2">
-                                    <span class="line"></span>班级ID
+                                <th class="col-md-1">
+                                    <span class="line"></span>详情
                                 </th>
-                            
                                 <th class="col-md-3">
                                     <span class="line"></span>操作
                                 </th>
@@ -420,7 +420,7 @@
             var str='';
             str='page='+number;
             nowpage=currpage;
-            xmlhttp.open("POST","/background/studentshow/",false);
+            xmlhttp.open("POST","/background/sevaluationshow/",false);
             xmlhttp.onreadystatechange = callback;
             xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             xmlhttp.send(str);   
@@ -505,7 +505,7 @@ function destroyjob(taskid){
             var datalength=data2.length;
             var pagesize=data2.pagecount;
             var nowpage=data2.page
-             students=data2.students;
+             evaluations=data2.evaluations;
             currpage=Number(nowpage)+1;
               var bodyhtml = "";
             
@@ -522,12 +522,12 @@ function destroyjob(taskid){
                      bodyhtml+="<tr>"+
                                         "<td><input type=\"checkbox\">"+
                                             "<div class=\"img\"><img src=\"/static/background/img/owl.png\"></div>"+
-                                            "<a href=\"/background/schooldetail?schoolid="+students[i].studentid+"\">"+students[i].studentid +"</a></td>"+
-                                        "<td class=\"description\">"+students[i].name+"</td>"+
-                                        "<td class=\"description\">"+students[i].address+"</td>"+
-                                        "<td class=\"description\">"+students[i].familyPhone+"</td>"+
-                                         "<td class=\"description\">"+students[i].family+"</td>"+
-                                        "<td class=\"description\">"+students[i].classid+"</td>"+
+                                            "<a href=\"/background/schooldetail?schoolid="+evaluations[i].id+"\">"+evaluations[i].id +"</a></td>"+
+                                        "<td class=\"description\">"+evaluations[i].evaluationobject+"</td>"+
+                                        "<td class=\"description\">"+evaluations[i].evaluationscore+"</td>"+
+                                        "<td class=\"description\">"+evaluations[i].type+"</td>"+
+                                         "<td class=\"description\">"+evaluations[i].time+"</td>"+
+                                        "<td class=\"description\">"+evaluations[i].content+"</td>"+
                                         "<td><ul class=\"actions\">"+
                                             "<li><i class=\"table-edit\"></i></li>"+
                                             "<li><i class=\"table-settings\"></i></li>"+

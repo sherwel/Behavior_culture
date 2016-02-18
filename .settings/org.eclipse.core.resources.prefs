@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//Back_ground/backgroundroute.py=utf-8
 encoding//Back_ground/control/classcontrol.py=utf-8
+encoding//Back_ground/control/evaluationcontrol.py=utf-8
 encoding//Back_ground/control/filecontrol.py=utf-8
 encoding//Back_ground/control/schedule.py=utf-8
 encoding//Back_ground/control/schoolcontrol.py=utf-8
@@ -9,6 +10,7 @@ encoding//Back_ground/control/teachercontrol.py=utf-8
 encoding//Back_ground/control/usercontrol.py=utf-8
 encoding//Back_ground/form/upload_file_form.py=utf-8
 encoding//Back_ground/model/Class.py=utf-8
+encoding//Back_ground/model/evaluation.py=utf-8
 encoding//Back_ground/model/school.py=utf-8
 encoding//Back_ground/model/student.py=utf-8
 encoding//Back_ground/model/teacher.py=utf-8

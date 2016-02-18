@@ -26,3 +26,6 @@ def getdata(path,sheet,col=''):
     except Exception,e:  
         print str(e)
         return dataset
+if __name__ == '__main__':
+    print getdata('/root/github/Behavior_culture/Back_ground/xlsdeal/xls_opertate/demo.xls',u'学生')
+    
