@@ -1,13 +1,62 @@
 #!/usr/bin/python
 #coding:utf-8
 from tool import SQLTool ,config
-from Back_ground.model import Class
+from Back_ground.model import takeclass,Class
 
 
 limitpage=15
 
 
 localconfig=config.Config()
+def haveclassshow(schoolid='',classid='',teacherid='',page='0'):
+    validresult=False
+    request_params=[]
+    values_params=[]
+    if schoolid!='':
+        request_params.append('schoolId')
+        values_params.append(SQLTool.formatstring(schoolid))
+    if classid!='':
+        request_params.append('t_classes.classId')
+        values_params.append(SQLTool.formatstring(classid))
+    if teacherid!='':
+        request_params.append('teacherId')
+        values_params.append(SQLTool.formatstring(teacherid))
+
+    request_params.append('t_teach.techerId')
+    values_params.append('t_teachers.teacherId')
+
+    DBhelp=SQLTool.DBmanager()
+    DBhelp.connectdb()
+    table=localconfig.teachertable
+    result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.teachtable], ['teacherId','masterId','time','schoolId','teacherName','classId'], request_params, values_params)
+
+    if count == 0:
+        pagecount = 0;
+    elif count %limitpage> 0:
+#         pagecount = math.ceil(count / limitpage)
+        pagecount=int((count+limitpage-1)/limitpage) 
+
+
+    else:
+        pagecount = count / limitpage
+
+#     print pagecount
+    if pagecount>0:
+    
+        limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.teachtable], ['teacherId','masterId','time','schoolId','teacherName','classId'], request_params, values_params,limit,order='time desc')
+
+        DBhelp.closedb()
+        classes=[]
+        if count>0:
+            validresult=True
+            for temp in result :
+                aclass=takeclass.Takeclass(teacherid=temp['teacherId'],schoolid=temp['schoolId'],masterid=temp['masterId'],time=temp['time'],teachername=temp['teacherName'],classid=temp['classId'])
+
+
+                classes.append(aclass)
+        return classes,count,pagecount
+    return [],0,pagecount
 def classshow(schoolname='',schoolid='',gradeid='',classid='',classname='',page='0'):
     validresult=False
     request_params=[]

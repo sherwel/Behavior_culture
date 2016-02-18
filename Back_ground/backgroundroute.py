@@ -76,6 +76,13 @@ def classmanage(request):
     if islogin:
         return render_to_response('backgroundview/class_manage.html',{'username':username,'form':upload_file_form.UploadFileForm()})
     return render_to_response('backgroundview/login.html', {'data':''})
+
+def takeclass(request):
+    islogin = request.COOKIES.get('islogin',False)
+    username = request.COOKIES.get('username','')
+    if islogin:
+        return render_to_response('backgroundview/have_class.html',{'username':username,'form':upload_file_form.UploadFileForm()})
+    return render_to_response('backgroundview/login.html', {'data':''})
 def studentmanage(request):
     islogin = request.COOKIES.get('islogin',False)
     username = request.COOKIES.get('username','')
@@ -158,6 +165,29 @@ def classshow(request):
     else:
         
         return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+
+def haveclassshow(request):
+
+    islogin = request.COOKIES.get('islogin',False)
+    classid=request.POST.get('classid','')
+    schoolid=request.POST.get('schoolid','')
+    teacherid=request.POST.get('teacherid','')
+    page=request.POST.get('page','0')
+    response_data = {}  
+    response_data['result'] = '0' 
+    response_data['page']=page
+    if islogin:
+        response_data['result'] = '1' 
+        classes,count,pagecount=classcontrol.haveclassshow(page=page,classid=classid,schoolid=schoolid,teacherid=teacherid)
+        response_data['length']=count
+        response_data['Classes']=classes
+        response_data['pagecount']=pagecount
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+    else:
+        
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+
+
 def studentshow(request):
 
     islogin = request.COOKIES.get('islogin',False)
