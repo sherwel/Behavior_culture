@@ -50,7 +50,7 @@ def studentshow(studentid='',name='',sex='',birthday='',address='',familyPhone='
         request_params.append('team')
         values_params.append(SQLTool.formatstring(team))
     if classid!='':
-        request_params.append('t_student.classId')
+        request_params.append('t_students_attend_class.classId')
         values_params.append(SQLTool.formatstring(classid))
 
     request_params.append('t_students_attend_class.studentId')
@@ -60,7 +60,7 @@ def studentshow(studentid='',name='',sex='',birthday='',address='',familyPhone='
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
     table=localconfig.studenttable
-    result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.student_attend_table], ['t_student.studentId','name','sex','birthday','address','familyPhone','mail','family','admissionTime','nation','placeOfOrigin','team','t_student.classId'], request_params, values_params)
+    result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.student_attend_table], ['t_student.studentId','name','sex','birthday','address','familyPhone','mail','family','admissionTime','nation','placeOfOrigin','team','t_students_attend_class.classId'], request_params, values_params)
 
     if count == 0:
         pagecount = 0;
