@@ -21,10 +21,12 @@ import xlrd
 
 def handle_uploaded_file(f,operation):
 
-    folderload= os.path.join(os.path.dirname(__file__), '../../upload/')
+    folderload= os.path.join(os.path.dirname(__file__), '..\..\upload\\')
+#    folderload= os.path.join(os.path.dirname(__file__), '../../upload/')
     import datetime
-    filename=webtool.getlocaltime('%Y-%m-%d_%X')+str(datetime.datetime.now().microsecond)+'_'+f.name
-    absolutepath=(folderload+filename).replace('\\','/')
+    filename=webtool.getlocaltime('%Y-%m-%d_')+str(datetime.datetime.now().hour)+str(datetime.datetime.now().minute)+str(datetime.datetime.now().second)+str(datetime.datetime.now().microsecond)+'_'+f.name
+#    absolutepath=(folderload+filename).replace('\\','/')
+    absolutepath=folderload+filename
     try:
         
         with open(absolutepath, 'wb+') as destination:
