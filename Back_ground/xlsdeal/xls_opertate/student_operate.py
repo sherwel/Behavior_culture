@@ -26,14 +26,14 @@ def loadstudent(path):
         temp=list(i)
         studentid=uuid.uuid1()
  
-        studentdata.append((studentid,temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],temp[8],temp[9],temp[10]))
+        studentdata.append((studentid,temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],temp[8],temp[9],temp[10],temp[14]))
         studentattenddata.append((studentid,temp[11],temp[13]))
         logindata.append((temp[12],'e10adc3949ba59abbe56e057f20f883e',studentid))
  
            
     sqlhelp=SQLTool.getObject()
     sqlhelp.connectdb()
-    result=sqlhelp.inserttableinfo_byparams(config.Config.studenttable, ['studentId','name','sex','birthday','address','familyPhone','mail','family','admissionTime','nation','placeOfOrigin','team'], studentdata)
+    result=sqlhelp.inserttableinfo_byparams(config.Config.studenttable, ['studentId','name','sex','birthday','address','familyPhone','mail','family','admissionTime','nation','placeOfOrigin','team','id'], studentdata)
     if result:
         result=sqlhelp.inserttableinfo_byparams(config.Config.student_attend_table, ['studentId','classId','time'], studentattenddata)
         if result:
