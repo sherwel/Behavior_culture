@@ -50,7 +50,7 @@ def loadclasstake(path):
           
     sqlhelp=SQLTool.getObject()
     sqlhelp.connectdb()
-    result=sqlhelp.inserttableinfo_byparams(config.Config.teachtable, ['techerId','classId','masterId','time'], classdata)
+    result=sqlhelp.inserttableinfo_byparams(config.Config.teachtable, ['teacherId','classId','masterId','time'], classdata)
 
     return result
 

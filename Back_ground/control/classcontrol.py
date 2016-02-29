@@ -22,13 +22,13 @@ def haveclassshow(schoolid='',classid='',teacherid='',page='0'):
         request_params.append('teacherId')
         values_params.append(SQLTool.formatstring(teacherid))
 
-    request_params.append('t_teach.techerId')
+    request_params.append('t_teach.teacherId')
     values_params.append('t_teachers.teacherId')
 
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
     table=localconfig.teachertable
-    result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.teachtable], ['teacherId','masterId','time','schoolId','teacherName','classId'], request_params, values_params)
+    result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.teachtable], ['t_teachers.teacherId','masterId','time','schoolId','teacherName','classId'], request_params, values_params)
 
     if count == 0:
         pagecount = 0;
@@ -44,7 +44,7 @@ def haveclassshow(schoolid='',classid='',teacherid='',page='0'):
     if pagecount>0:
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.teachtable], ['teacherId','masterId','time','schoolId','teacherName','classId'], request_params, values_params,limit,order='time desc')
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table,localconfig.teachtable], ['t_teachers.teacherId','masterId','time','schoolId','teacherName','classId'], request_params, values_params,limit,order='time desc')
 
         DBhelp.closedb()
         classes=[]
